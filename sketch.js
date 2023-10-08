@@ -57,18 +57,18 @@ function setup() {
 function draw() {
     background(41);
 
-    let currentX = 20;
+    let currentX = 200;
     let currentY = 750;
 
     for (let i = 0; i < myBundesländer.length; i++) {
-        myBundesländer [i].display (currentX, currentY);
+        myBundesländer [i].einkommenD (currentX, currentY);
         currentX += myBundesländer[i].myWidth+3;
     }
 
-    currentX = 700;
+    currentX = 200;
 
     for (let t = 0; t < myCountries.length; t++) {
-        myCountries [t].display2 (currentX, currentY);
+        myCountries [t].lebenshaltungD (currentX, currentY);
         currentX += myCountries[t].myWidth+3;
     }
 

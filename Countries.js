@@ -21,7 +21,7 @@ class Country {
     }
 
 
-    display (myX, myY) {
+    einkommenD (myX, myY) {
         this.estaEncima = mouseX > myX  && mouseX < myX + this.myWidth &&
             mouseY > myY - this.mySize && mouseY < myY;
 
@@ -36,9 +36,9 @@ class Country {
             text(this.myCountry, myX, myY +15);
             text(this.myCountryISO, myX +30, myY +15);
         } else {this.myColor = color(50,150,55);}
-    } // end of display
+    } // end of einkommenD
 
-    display2 (myX, myY) {
+    lebenshaltungD (myX, myY) {
         this.estaEncima = mouseX > myX  && mouseX < myX + this.myWidth &&
             mouseY > myY - this.mySize && mouseY < myY;
 
@@ -53,6 +53,6 @@ class Country {
             text(this.myCountry, myX, myY +15);
             text(this.myCountryISO, myX +30, myY +15);
         } else{this.myColor2 = color(150,50,55);}
-    } // end of display
+    } // end of einkommenD
 
 }  // end of class
