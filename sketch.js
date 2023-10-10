@@ -23,9 +23,10 @@ function setup() {
 
         currentCountry2.myCountryArea = myRow.get('Value');
             currentCountry2.myLocation = myRow.get('LOCATION');
-            currentCountry2.mySize = map(currentCountry2.myCountryArea, 17098250, 50, 50000, 50); // [17 098 250,50]
+            currentCountry2.myTime = myRow.get('TIME');
+            currentCountry2.mySize = map(currentCountry2.myCountryArea, 20000, 80000, 0, -300); // [17 098 250,50]
 
-            if (currentCountry2.myLocation === "DEU") {
+            if (currentCountry2.myLocation === "DEU" && currentCountry2.myTime > 2011) {
                 myIncome[t] = currentCountry2;
                 t++;
             }
@@ -37,9 +38,10 @@ function setup() {
 
         currentCountry.myCountryArea = myRow.get('OBS_VALUE');
             currentCountry.myCountry = myRow.get('geo');
-            currentCountry.mySize = map(currentCountry.myCountryArea, 17098250, 50, 70000000, 50); // [17 098 250,50]
+            currentCountry.myTime = myRow.get('TIME_PERIOD');
+            currentCountry.mySize = map(currentCountry.myCountryArea, 80, 150, 0, 500); // [17 098 250,50]
 
-            if (currentCountry.myCountry === "DE:Germany") {
+            if (currentCountry.myCountry === "DE:Germany" && currentCountry.myTime > 2011) {
             myConsum[i] = currentCountry;
             i++;
             }
@@ -51,8 +53,8 @@ function draw() {
     background(41);
   
 
-    let currentX = 20;
-    let currentY = 350;
+    let currentX = 150;
+    let currentY = 450;
 
 
 
@@ -61,7 +63,7 @@ function draw() {
         currentX += myConsum[i].myWidth + 3;
     }
 
-    currentX = 500;
+    currentX = 150;
     karteX = 500;
 
     // Karte

@@ -11,6 +11,7 @@ class Country {
         this.myCountryArea = 0;
         this.myLocation = "NaN";
         this.myCountry2 = "NaN";
+        this.myTime = 0;
         this.myCountryArea2 = 0;
         this.myCountryISO2 = "NaN";
         this.mySize = 0;
