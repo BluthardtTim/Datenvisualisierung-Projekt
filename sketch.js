@@ -87,7 +87,6 @@ function draw() {
     // text ("Einkommen der Deutschen", 20, 300);
     // text ("Lebenshaltungskosten Deutschland", 700, 300);
     textSize(12);
-    text("frameRate:   " + Math.round(frameRate()), 20, height - 10);
 
     // noLoop();
 }
