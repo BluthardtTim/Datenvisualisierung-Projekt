@@ -7,7 +7,7 @@ let myConsum = [];
 let karte
 
 function preload() {
-    incomeData = loadTable('data2/EinkommenEu.csv', 'csv', 'header');
+    incomeData = loadTable('data2/EinkommenEu2.csv', 'csv', 'header');
     consumData = loadTable('data2/konsumpreisindex_eu.csv', 'csv', 'header');
     karte = loadImage('MapChart_Map-2.png');
 }
@@ -21,12 +21,12 @@ function setup() {
     for (let myRow of incomeData.rows) {
         let currentIncome = new Country();
 
-        currentIncome.myValue = myRow.get('Value');
+        currentIncome.myValue = myRow.get('INDEX');
             currentIncome.myLocation = myRow.get('LOCATION');
             currentIncome.myTime = myRow.get('TIME');
-            currentIncome.mySize = map(currentIncome.myValue, 20000, 80000, 0, 500);
+            currentIncome.mySize = map(currentIncome.myValue, 80, 150, 0, 500);
 
-            if (currentIncome.myLocation === "DEU" && currentIncome.myTime > 2011) {
+            if (currentIncome.myLocation === "GRC" && currentIncome.myTime > 2011) {
                 myIncome[t] = currentIncome;
                 t++;
             }
