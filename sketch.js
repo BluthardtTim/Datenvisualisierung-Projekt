@@ -24,7 +24,7 @@ function setup() {
         currentIncome.myValue = myRow.get('Value');
             currentIncome.myLocation = myRow.get('LOCATION');
             currentIncome.myTime = myRow.get('TIME');
-            currentIncome.mySize = map(currentIncome.myValue, 20000, 80000, 0, 300); // [17 098 250,50]
+            currentIncome.mySize = map(currentIncome.myValue, 20000, 80000, 0, 500);
 
             if (currentIncome.myLocation === "DEU" && currentIncome.myTime > 2011) {
                 myIncome[t] = currentIncome;
@@ -39,7 +39,7 @@ function setup() {
         currentConsume.myValue = myRow.get('OBS_VALUE');
             currentConsume.myCountry = myRow.get('geo');
             currentConsume.myTime = myRow.get('TIME_PERIOD');
-            currentConsume.mySize = map(currentConsume.myValue, 80, 150, 0, -500); // [17 098 250,50]
+            currentConsume.mySize = map(currentConsume.myValue, 80, 150, 0, 500);
 
             if (currentConsume.myCountry === "DE:Germany" && currentConsume.myTime > 2011) {
             myConsum[i] = currentConsume;
@@ -53,17 +53,17 @@ function draw() {
     background(41);
   
 
-    let currentX = 150;
-    let currentY = 450;
+    let currentX = 300;
+    let currentY = windowHeight/2+180;
 
 
 
     for (let i = 0; i < myConsum.length; i++) {
         myConsum[i].display(currentX, currentY);
-        currentX += myConsum[i].myWidth + 8;
+        currentX += myConsum[i].myWidth + 50;
     }
 
-    currentX = 150;
+    currentX = 270;
     karteX = 500;
 
     // Karte
@@ -75,7 +75,7 @@ function draw() {
  
     for (let t = 0; t < myIncome.length; t++) {
         myIncome[t].display2(currentX, currentY);
-        currentX += myIncome[t].myWidth + 8;
+        currentX += myIncome[t].myWidth + 50;
     }
 
     stroke(255,0,0);
