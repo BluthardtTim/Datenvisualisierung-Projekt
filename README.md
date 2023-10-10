@@ -1,1 +1,0 @@
-# Datenvisualisierung-Projekt
