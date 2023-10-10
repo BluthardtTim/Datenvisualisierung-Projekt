@@ -5,6 +5,7 @@ let consumData;
 let myConsum = [];
 
 let karte
+let myRadius
 
 function preload() {
     incomeData = loadTable('data2/EinkommenEu.csv', 'csv', 'header');
@@ -23,7 +24,8 @@ function setup() {
 
         currentCountry2.myCountryArea = myRow.get('Value');
             currentCountry2.myLocation = myRow.get('LOCATION');
-            currentCountry2.mySize = map(currentCountry2.myCountryArea, 17098250, 50, 50000, 50); // [17 098 250,50]
+            currentCountry2.mySize = map(currentCountry2.myCountryArea, 20000, 80000, 0, -500); // [17 098 250,50]
+            myRadius = map(currentCountry2.myCountryArea, 20000, 80000, 5, 200);
 
             if (currentCountry2.myLocation === "DEU") {
                 myIncome[t] = currentCountry2;
@@ -37,7 +39,8 @@ function setup() {
 
         currentCountry.myCountryArea = myRow.get('OBS_VALUE');
             currentCountry.myCountry = myRow.get('geo');
-            currentCountry.mySize = map(currentCountry.myCountryArea, 17098250, 50, 70000000, 50); // [17 098 250,50]
+            currentCountry.mySize = map(currentCountry.myCountryArea, 20000, 80000, 0, 50); // [17 098 250,50]
+            
 
             if (currentCountry.myCountry === "DE:Germany") {
             myConsum[i] = currentCountry;
@@ -45,6 +48,8 @@ function setup() {
             }
         }   
 }
+
+
 
 
 function draw() {
@@ -86,6 +91,10 @@ function draw() {
     // text ("Lebenshaltungskosten Deutschland", 700, 300);
     textSize(12);
     text("frameRate:   " + Math.round(frameRate()), 20, height - 10);
+
+
+    fill(255,0,0);
+    ellipse(windowWidth/2+270, windowHeight/2+70,myRadius);
 
     // noLoop();
 }
