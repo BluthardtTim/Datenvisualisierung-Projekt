@@ -24,6 +24,27 @@ function setup() {
     let i=0;
     let t=0;
 
+    
+    for (let myRow of incomeData.rows){
+        let currentCountry2 = new Country();
+
+        currentCountry2.myCountryArea = myRow.get('Value');
+        if (currentCountry2.myCountryArea > 60){
+            currentCountry2.myCountry = myRow.get('LOCATION');
+            currentCountry2.myLocation = myRow.get('LOCATION');
+            currentCountry2.mySize = map( currentCountry2.myCountryArea, 17098250,50,  50000,50) ; // [17 098 250,50]
+
+
+            if ( currentCountry2.myLocation === "DEU") {
+            myIncome [t] = currentCountry2;
+            t++;
+            }
+
+
+        }
+    }
+
+
     // for (let myRow of countryData2.rows){
     //     let currentCountry = new Country();
 
@@ -33,27 +54,14 @@ function setup() {
     //         currentCountry.myCountryISO = myRow.get('TIME');
     //         currentCountry.mySize = map( currentCountry.myCountryArea, 17098250,50,  70000,50) ; // [17 098 250,50]
 
-    //         // if ( currentCountry.myCountryISO === "DEU" || currentCountry.myCountryISO === "CRI")
-    //         //     currentCountry.myColor = color(200,100,100);
+            // if ( currentCountry.myLocation === "DEU")
+                // currentCountry.myColor = color(200,100,100);
 
     //         myBundesländer [i] = currentCountry;
     //         i++;
     //     }
     // }
 
-    for (let myRow of incomeData.rows){
-        let currentCountry2 = new Country();
-
-        currentCountry2.myCountryArea = myRow.get('Value');
-        if (currentCountry2.myCountryArea > 60){
-            currentCountry2.myCountry = myRow.get('LOCATION');
-            currentCountry2.myCountryISO = myRow.get('TIME');
-            currentCountry2.mySize = map( currentCountry2.myCountryArea, 17098250,50,  50000000,50) ; // [17 098 250,50]
-
-            myIncome [t] = currentCountry2;
-            t++;
-        }
-    }
 }
 
 
@@ -63,10 +71,12 @@ function draw() {
     let currentX = 20;
     let currentY = 750;
 
+    
     for (let i = 0; i < myBundesländer.length; i++) {
         myBundesländer [i].display (currentX, currentY);
         currentX += myBundesländer[i].myWidth+3;
     }
+
 
     currentX = 700;
 
