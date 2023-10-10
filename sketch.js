@@ -60,7 +60,7 @@ function draw() {
 
     for (let i = 0; i < myConsum.length; i++) {
         myConsum[i].display(currentX, currentY);
-        currentX += myConsum[i].myWidth + 3;
+        currentX += myConsum[i].myWidth + 8;
     }
 
     currentX = 150;
@@ -75,7 +75,7 @@ function draw() {
  
     for (let t = 0; t < myIncome.length; t++) {
         myIncome[t].display2(currentX, currentY);
-        currentX += myIncome[t].myWidth + 3;
+        currentX += myIncome[t].myWidth + 8;
     }
 
     stroke(255,0,0);
