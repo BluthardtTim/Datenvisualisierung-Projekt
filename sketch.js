@@ -5,15 +5,15 @@ TEC costa rica, hfg schw. gmuend
 2022
 */
 
-let countryData;
-let myCountries = [];
+let incomeData;
+let myIncome = [];
 
 let countryData2;
 let myBundesländer = [];
 
 function preload(){
-    countryData = loadTable('data/Lebenshaltungskosten.csv', 'csv', 'header');
-    countryData2 = loadTable('data/Deutschland.csv', 'csv', 'header');
+    incomeData = loadTable('data/EinkommenEu.csv', 'csv', 'header');
+    countryData2 = loadTable('data/komsumpreisindex_eu.csv', 'csv', 'header');
 }
 
 function setup() {
@@ -38,7 +38,7 @@ function setup() {
         }
     }
 
-    for (let myRow of countryData.rows){
+    for (let myRow of incomeData.rows){
         let currentCountry2 = new Country();
 
         currentCountry2.myCountryArea = myRow.get('Value');
@@ -47,7 +47,7 @@ function setup() {
             currentCountry2.myCountryISO = myRow.get('TIME');
             currentCountry2.mySize = map( currentCountry2.myCountryArea, 17098250,50,  50000000,50) ; // [17 098 250,50]
 
-            myCountries [t] = currentCountry2;
+            myIncome [t] = currentCountry2;
             t++;
         }
     }
@@ -67,9 +67,9 @@ function draw() {
 
     currentX = 700;
 
-    for (let t = 0; t < myCountries.length; t++) {
-        myCountries [t].display2 (currentX, currentY);
-        currentX += myCountries[t].myWidth+3;
+    for (let t = 0; t < myIncome.length; t++) {
+        myIncome [t].display2 (currentX, currentY);
+        currentX += myIncome[t].myWidth+3;
     }
 
 
