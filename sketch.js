@@ -16,7 +16,7 @@ let karte
 function preload(){
     countryData = loadTable('data/Lebenshaltungskosten.csv', 'csv', 'header');
     countryData2 = loadTable('data/Deutschland.csv', 'csv', 'header');
-    karte = loadImage('MapChart_Map.png')
+    karte = loadImage('MapChart_Map-2.png')
 }
 
 function setup() {
@@ -71,7 +71,7 @@ function draw() {
    currentX = windowWidth/2;
 
     karte.resize(0, windowHeight-200)
-    image(karte, currentX, 0)
+    image(karte, currentX+25, 100)
 
    // for (let t = 0; t < myCountries.length; t++) {
    //     myCountries [t].display2 (currentX, currentY);
