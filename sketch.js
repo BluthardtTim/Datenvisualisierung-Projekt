@@ -1,94 +1,91 @@
-/*
-franklin hernandez-castro
-www.skizata.com
-TEC costa rica, hfg schw. gmuend
-2022
-*/
+let incomeData;
+let myIncome = [];
 
-let countryData;
-let myCountries = [];
-
-let countryData2;
-let myBundesländer = [];
+let consumData;
+let myConsum = [];
 
 let karte
 
-function preload(){
-    countryData = loadTable('data/Lebenshaltungskosten.csv', 'csv', 'header');
-    countryData2 = loadTable('data/Deutschland.csv', 'csv', 'header');
-    karte = loadImage('MapChart_Map-2.png')
+function preload() {
+    incomeData = loadTable('data2/EinkommenEu.csv', 'csv', 'header');
+    consumData = loadTable('data2/konsumpreisindex_eu.csv', 'csv', 'header');
+    karte = loadImage('MapChart_Map-2.png');
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    let i=0;
-    let t=0;
+    let i = 0;
+    let t = 0;
 
-    for (let myRow of countryData2.rows){
-        let currentCountry = new Country();
-
-        currentCountry.myCountryArea = myRow.get('Value');
-        if (currentCountry.myCountryArea > 10000){
-            currentCountry.myCountry = myRow.get('LOCATION');
-            currentCountry.myCountryISO = myRow.get('TIME');
-            currentCountry.mySize = map( currentCountry.myCountryArea, 17098250,50,  70000,50) ; // [17 098 250,50]
-
-            // if ( currentCountry.myCountryISO === "DEU" || currentCountry.myCountryISO === "CRI")
-            //     currentCountry.myColor = color(200,100,100);
-
-            myBundesländer [i] = currentCountry;
-            i++;
-        }
-    }
-
-    for (let myRow of countryData.rows){
+    // Einkommen der Eu Länder
+    for (let myRow of incomeData.rows) {
         let currentCountry2 = new Country();
 
         currentCountry2.myCountryArea = myRow.get('Value');
-        if (currentCountry2.myCountryArea > 60){
-            currentCountry2.myCountry = myRow.get('LOCATION');
-            currentCountry2.myCountryISO = myRow.get('TIME');
-            currentCountry2.mySize = map( currentCountry2.myCountryArea, 17098250,50,  50000000,50) ; // [17 098 250,50]
+            currentCountry2.myLocation = myRow.get('LOCATION');
+            currentCountry2.mySize = map(currentCountry2.myCountryArea, 17098250, 50, 50000, 50); // [17 098 250,50]
 
-            myCountries [t] = currentCountry2;
-            t++;
-        }
+            if (currentCountry2.myLocation === "DEU") {
+                myIncome[t] = currentCountry2;
+                t++;
+            }
     }
+
+    // Consum der Eu Länder
+    for (let myRow of consumData.rows) {
+        let currentCountry = new Country();
+
+        currentCountry.myCountryArea = myRow.get('OBS_VALUE');
+            currentCountry.myCountry = myRow.get('geo');
+            currentCountry.mySize = map(currentCountry.myCountryArea, 17098250, 50, 70000000, 50); // [17 098 250,50]
+
+            if (currentCountry.myCountry === "DE:Germany") {
+            myConsum[i] = currentCountry;
+            i++;
+            }
+        }   
 }
 
 
 function draw() {
     background(41);
+  
 
     let currentX = 20;
-    let currentY = 750;
+    let currentY = 350;
 
-    for (let i = 0; i < myBundesländer.length; i++) {
-        myBundesländer [i].display (currentX, currentY);
-        currentX += myBundesländer[i].myWidth+3;
+
+
+    for (let i = 0; i < myConsum.length; i++) {
+        myConsum[i].display(currentX, currentY);
+        currentX += myConsum[i].myWidth + 3;
     }
 
-   currentX = windowWidth/2;
+    currentX = 500;
+    karteX = 500;
 
+    // Karte
+    karteX = windowWidth/2;
+    
     karte.resize(0, windowHeight-200)
-    image(karte, currentX+25, 100)
+    image(karte, karteX+25, 100)
 
-   // for (let t = 0; t < myCountries.length; t++) {
-   //     myCountries [t].display2 (currentX, currentY);
-   //     currentX += myCountries[t].myWidth+3;
-    //}
-
+ 
+    for (let t = 0; t < myIncome.length; t++) {
+        myIncome[t].display2(currentX, currentY);
+        currentX += myIncome[t].myWidth + 3;
+    }
 
     stroke(255,0,0);
     line(windowWidth/2, windowHeight, windowWidth/2, 0);
     noStroke()
     fill (200);
+
     textSize(18);
-    text ("Einkommen der Deutschen", 20, 300);
-    text ("Lebenshaltungskosten Deutschland", 700, 300);
+    // text ("Einkommen der Deutschen", 20, 300);
+    // text ("Lebenshaltungskosten Deutschland", 700, 300);
     textSize(12);
-    text ("In USD", 20, 315);
-    text("frameRate:   " + Math.round(frameRate()), 20, height-10);
+    text("frameRate:   " + Math.round(frameRate()), 20, height - 10);
 
     // noLoop();
 }

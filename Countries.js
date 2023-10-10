@@ -9,7 +9,7 @@ class Country {
     constructor ( ){
         this.myCountry = "NaN";
         this.myCountryArea = 0;
-        this.myCountryISO = "NaN";
+        this.myLocation = "NaN";
         this.myCountry2 = "NaN";
         this.myCountryArea2 = 0;
         this.myCountryISO2 = "NaN";
