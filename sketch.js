@@ -19,30 +19,30 @@ function setup() {
 
     // Einkommen der Eu Länder
     for (let myRow of incomeData.rows) {
-        let currentCountry2 = new Country();
+        let currentIncome = new Country();
 
-        currentCountry2.myCountryArea = myRow.get('Value');
-            currentCountry2.myLocation = myRow.get('LOCATION');
-            currentCountry2.myTime = myRow.get('TIME');
-            currentCountry2.mySize = map(currentCountry2.myCountryArea, 20000, 80000, 0, -300); // [17 098 250,50]
+        currentIncome.myValue = myRow.get('Value');
+            currentIncome.myLocation = myRow.get('LOCATION');
+            currentIncome.myTime = myRow.get('TIME');
+            currentIncome.mySize = map(currentIncome.myValue, 20000, 80000, 0, 300); // [17 098 250,50]
 
-            if (currentCountry2.myLocation === "DEU" && currentCountry2.myTime > 2011) {
-                myIncome[t] = currentCountry2;
+            if (currentIncome.myLocation === "DEU" && currentIncome.myTime > 2011) {
+                myIncome[t] = currentIncome;
                 t++;
             }
     }
 
     // Consum der Eu Länder
     for (let myRow of consumData.rows) {
-        let currentCountry = new Country();
+        let currentConsume = new Country();
 
-        currentCountry.myCountryArea = myRow.get('OBS_VALUE');
-            currentCountry.myCountry = myRow.get('geo');
-            currentCountry.myTime = myRow.get('TIME_PERIOD');
-            currentCountry.mySize = map(currentCountry.myCountryArea, 80, 150, 0, 500); // [17 098 250,50]
+        currentConsume.myValue = myRow.get('OBS_VALUE');
+            currentConsume.myCountry = myRow.get('geo');
+            currentConsume.myTime = myRow.get('TIME_PERIOD');
+            currentConsume.mySize = map(currentConsume.myValue, 80, 150, 0, -500); // [17 098 250,50]
 
-            if (currentCountry.myCountry === "DE:Germany" && currentCountry.myTime > 2011) {
-            myConsum[i] = currentCountry;
+            if (currentConsume.myCountry === "DE:Germany" && currentConsume.myTime > 2011) {
+            myConsum[i] = currentConsume;
             i++;
             }
         }   
