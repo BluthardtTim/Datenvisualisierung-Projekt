@@ -15,8 +15,8 @@ class Country {
         this.myCountryISO2 = "NaN";
         this.mySize = 0;
         this.myWidth = 15 ;
-        this.myColor = color(50,150,55);
-        this.myColor2 = color(150,50,55);
+        this.myColor = color(150,50,55);
+        this.myColor2 = color(50,150,55);
         this.estaEncima = false;
     }
 
@@ -30,12 +30,12 @@ class Country {
         rect (myX, myY, this.myWidth, -this.mySize);
 
         if (this.estaEncima) {
-            this.myColor = color(50,150,55, 150);
+            this.myColor = color(150,50,55, 150);
             fill (200);
             text(this.myCountryArea, myX, myY+30);
             text(this.myCountry, myX, myY +15);
             text(this.myCountryISO, myX +30, myY +15);
-        } else {this.myColor = color(50,150,55);}
+        } else {this.myColor = color(150,50,55);}
     } // end of display
 
     display2 (myX, myY) {
@@ -47,12 +47,12 @@ class Country {
         rect (myX, myY, this.myWidth, -this.mySize);
 
         if (this.estaEncima) {
-            this.myColor2 = color(150,50,55, 150);
+            this.myColor2 = color(50,150,55, 150);
             fill (200);
             text(this.myCountryArea, myX, myY+30);
             text(this.myCountry, myX, myY +15);
             text(this.myCountryISO, myX +30, myY +15);
-        } else{this.myColor2 = color(150,50,55);}
+        } else{this.myColor2 = color(50,150,55);}
     } // end of display
 
 }  // end of class
