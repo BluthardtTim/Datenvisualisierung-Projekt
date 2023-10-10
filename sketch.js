@@ -11,9 +11,12 @@ let myCountries = [];
 let countryData2;
 let myBundesländer = [];
 
+let karte
+
 function preload(){
     countryData = loadTable('data/Lebenshaltungskosten.csv', 'csv', 'header');
     countryData2 = loadTable('data/Deutschland.csv', 'csv', 'header');
+    karte = loadImage('MapChart_Map.png')
 }
 
 function setup() {
@@ -65,14 +68,20 @@ function draw() {
         currentX += myBundesländer[i].myWidth+3;
     }
 
-    currentX = 700;
+   currentX = windowWidth/2;
 
-    for (let t = 0; t < myCountries.length; t++) {
-        myCountries [t].display2 (currentX, currentY);
-        currentX += myCountries[t].myWidth+3;
-    }
+    karte.resize(0, windowHeight-200)
+    image(karte, currentX, 0)
+
+   // for (let t = 0; t < myCountries.length; t++) {
+   //     myCountries [t].display2 (currentX, currentY);
+   //     currentX += myCountries[t].myWidth+3;
+    //}
 
 
+    stroke(255,0,0);
+    line(windowWidth/2, windowHeight, windowWidth/2, 0);
+    noStroke()
     fill (200);
     textSize(18);
     text ("Einkommen der Deutschen", 20, 300);
