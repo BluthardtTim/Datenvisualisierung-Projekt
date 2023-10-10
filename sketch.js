@@ -12,8 +12,11 @@ let countryData2;
 let myBundesländer = [];
 
 function preload(){
-    incomeData = loadTable('data/EinkommenEu.csv', 'csv', 'header');
-    countryData2 = loadTable('data/komsumpreisindex_eu.csv', 'csv', 'header');
+
+    // incomeData = loadTable('data/Deutschland.csv', 'csv', 'header');
+
+    incomeData = loadTable('data2/EinkommenEu.csv', 'csv', 'header');
+    // countryData2 = loadTable('data2/komsumpreisindex_eu.csv', 'csv', 'header');
 }
 
 function setup() {
@@ -21,22 +24,22 @@ function setup() {
     let i=0;
     let t=0;
 
-    for (let myRow of countryData2.rows){
-        let currentCountry = new Country();
+    // for (let myRow of countryData2.rows){
+    //     let currentCountry = new Country();
 
-        currentCountry.myCountryArea = myRow.get('Value');
-        if (currentCountry.myCountryArea > 10000){
-            currentCountry.myCountry = myRow.get('LOCATION');
-            currentCountry.myCountryISO = myRow.get('TIME');
-            currentCountry.mySize = map( currentCountry.myCountryArea, 17098250,50,  70000,50) ; // [17 098 250,50]
+    //     currentCountry.myCountryArea = myRow.get('Value');
+    //     if (currentCountry.myCountryArea > 10000){
+    //         currentCountry.myCountry = myRow.get('LOCATION');
+    //         currentCountry.myCountryISO = myRow.get('TIME');
+    //         currentCountry.mySize = map( currentCountry.myCountryArea, 17098250,50,  70000,50) ; // [17 098 250,50]
 
-            // if ( currentCountry.myCountryISO === "DEU" || currentCountry.myCountryISO === "CRI")
-            //     currentCountry.myColor = color(200,100,100);
+    //         // if ( currentCountry.myCountryISO === "DEU" || currentCountry.myCountryISO === "CRI")
+    //         //     currentCountry.myColor = color(200,100,100);
 
-            myBundesländer [i] = currentCountry;
-            i++;
-        }
-    }
+    //         myBundesländer [i] = currentCountry;
+    //         i++;
+    //     }
+    // }
 
     for (let myRow of incomeData.rows){
         let currentCountry2 = new Country();
