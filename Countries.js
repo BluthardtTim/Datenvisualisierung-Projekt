@@ -19,7 +19,7 @@ class Country {
         this.myColor2 = color(150,50,55);
         this.estaEncima = false;
     }
-
+//hi
 
     einkommenD (myX, myY) {
         this.estaEncima = mouseX > myX  && mouseX < myX + this.myWidth &&
