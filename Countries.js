@@ -17,6 +17,10 @@ class Country {
         this.myColorConsume = color(50,150,55);
         this.myColorIncome = color(150,50,55);
         this.estaEncima = false;
+
+        
+        this.myCountryISO = "NaN";
+        this.arrayOfYears = ["2020","2019","2018","2017","2016"];
         this.arrayOfData = [];
     }
 
