@@ -1,5 +1,6 @@
 let incomeData;
 let myIncome = [];
+let baseLine = 0;
 
 let consumData;
 let myConsum = [];
@@ -17,6 +18,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     let i = 0;
     let t = 0;
+    baseLine = height-50;
 
     console.log("total rows: " + incomeData.getRowCount());
     console.log("total columns: " + incomeData.getColumnCount() );
@@ -45,6 +47,13 @@ function setup() {
         console.log("myCountry name: " + myIncome [c].myCountryISO );
         console.log("data: " + myIncome [c].arrayOfData );
     }
+
+
+    for (let country = 0; country < myIncome.length; country++) { // countries
+        //calculates the pixel position of each year in the country
+        myIncome[country].calculatePoints(baseLine);
+    }
+
 
     // // Einkommen der Eu Länder
     // for (let myRow of incomeData.rows) {
@@ -102,9 +111,14 @@ function draw() {
     background(241);
 
 
+    for (let country = 0; country < myIncome.length; country++) { // countries
+        myIncome[country].drawCountryGDP();
+    }
+
+
+    
     let currentX = 300;
     let currentY = windowHeight / 2 + 180;
-
 
 
     for (let i = 0; i < myConsum.length; i++) {
