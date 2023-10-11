@@ -42,6 +42,43 @@ function setup() {
         isoCountryOld = isoCountryNew;
     }
 
+
+
+
+
+
+
+    let rowsInTable2 = consumData.getRows();
+
+    
+    let index2 = -1;
+    for (let r = 0; r < rowsInTable2.length; r++) {
+        let isoCountryNew = rowsInTable2[r].get('geo'); //
+        if (isoCountryOld !== isoCountryNew) {
+            let currentCountry = new Country ();
+            currentCountry.myCountryISO = isoCountryNew;
+            myConsum.push(currentCountry);
+            index2++;
+        }
+        myConsum[index2].arrayOfData2.push(rowsInTable2[r].get('OBS_VALUE'));
+        isoCountryOld = isoCountryNew;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
     // just checking if all data are in objets
@@ -54,6 +91,12 @@ function setup() {
     for (let country = 0; country < myIncome.length; country++) { // countries
         //calculates the pixel position of each year in the country
         myIncome[country].calculatePoints(baseLine);
+
+    }
+
+    for (let country = 0; country < myConsum.length; country++) { // countries
+        //calculates the pixel position of each year in the country
+        myConsum[country].calculatePoints2(baseLine);
 
     }
 
@@ -119,6 +162,9 @@ function draw() {
     for (let country = 0; country < myIncome.length; country++) { // countries
         myIncome[country].drawCountryGDP();
     }
+    for (let country = 0; country < myConsum.length; country++) { // countries
+        myConsum[country].drawCountryGDP2();
+    }
 
 
     
@@ -126,10 +172,10 @@ function draw() {
     let currentY = windowHeight / 2 + 180;
 
 
-    for (let i = 0; i < myConsum.length; i++) {
-        myConsum[i].display(currentX, currentY);
-        currentX += myConsum[i].myWidth + 50;
-    }
+    // for (let i = 0; i < myConsum.length; i++) {
+    //     myConsum[i].display(currentX, currentY);
+    //     currentX += myConsum[i].myWidth + 50;
+    // }
 
     currentX = 270;
     karteX = 500;
@@ -141,10 +187,10 @@ function draw() {
     image(karte, karteX + 25, 100)
 
 
-    for (let t = 0; t < myIncome.length; t++) {
-        myIncome[t].display2(currentX, currentY);
-        currentX += myIncome[t].myWidth + 50;
-    }
+    // for (let t = 0; t < myIncome.length; t++) {
+    //     myConsum[t].display2(currentX, currentY);
+    //     currentX += myIncome[t].myWidth + 50;
+    // }
 
     stroke(255, 0, 0);
     line(windowWidth / 2, windowHeight, windowWidth / 2, 0);
