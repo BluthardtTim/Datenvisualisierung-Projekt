@@ -19,7 +19,7 @@ class Country {
         this.estaEncima = false;
 
         this.miColorNormal = color(255, 150, 100, 150);
-        this.miColorNormal2 = color(10, 255, 10, 250);
+        this.miColorNormal2 = color(10, 150, 10, 150);
         this.miColorOver = color(255);
         
         this.arrayOfpoints = [];
