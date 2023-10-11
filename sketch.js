@@ -42,6 +42,8 @@ function setup() {
         isoCountryOld = isoCountryNew;
     }
 
+  
+
     // just checking if all data are in objets
     for (let c = 0; c < myIncome.length; c++) {
         console.log("myCountry name: " + myIncome [c].myCountryISO );
@@ -52,7 +54,10 @@ function setup() {
     for (let country = 0; country < myIncome.length; country++) { // countries
         //calculates the pixel position of each year in the country
         myIncome[country].calculatePoints(baseLine);
+
     }
+
+    
 
 
     // // Einkommen der Eu Länder

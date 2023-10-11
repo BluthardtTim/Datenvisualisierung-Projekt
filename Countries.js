@@ -23,18 +23,49 @@ class Country {
         
         this.arrayOfpoints = [];
         this.myCountryISO = "NaN";
-        this.arrayOfYears = ["2020", "2019", "2018", "2017", "2016"];
+        //this.arrayOfYears = ["2020", "2019", "2018", "2017", "2016"];
         this.arrayOfData = [];
+
+        this.numYears = 13; // for the distribution of the points in Xs
+        // this.stepX = (windowWidth - 150) / this.numYears;
+        this.stepX = (windowWidth / 2) / this.numYears;
+        this.xBorder = 25;
+
     }
 
 
     calculatePoints(lineaBase) {
+        console.log("length: " + this.arrayOfData.length);
+
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let secX = this.xBorder + (year) * this.stepX;
-            let secY = map(this.arrayOfData[year].y, 10000000, 22000000000000, lineaBase, 150);
+            console.log(secX);
+            // secX = 50;
+            let secY = map(this.arrayOfData[year], 80, 150, lineaBase, 150);
             let currentPoint = createVector(secX, secY);
             this.arrayOfpoints.push(currentPoint);
         }
+
+        console.log("arrayOfpoints" + this.arrayOfpoints);
+
+        // if(this.myCode === "DEU") {
+        //     this.selected=true;
+        // }
+    };
+
+    calculatePoints2(lineaBase) {
+        console.log("length: " + this.arrayOfData.length);
+
+        for (let year = 0; year < this.arrayOfData.length; year++) {
+            let secX = this.xBorder + (year) * this.stepX;
+            console.log(secX);
+            // secX = 50;
+            let secY = map(this.arrayOfData[year], 80, 150, lineaBase, 150);
+            let currentPoint = createVector(secX, secY);
+            this.arrayOfpoints.push(currentPoint);
+        }
+
+        console.log("arrayOfpoints" + this.arrayOfpoints);
 
         // if(this.myCode === "DEU") {
         //     this.selected=true;
