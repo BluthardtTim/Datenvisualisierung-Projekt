@@ -17,6 +17,7 @@ class Country {
         this.myColorConsume = color(50,150,55);
         this.myColorIncome = color(150,50,55);
         this.estaEncima = false;
+        this.arrayOfData = [];
     }
 
 
