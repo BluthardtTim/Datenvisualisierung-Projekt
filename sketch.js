@@ -2,11 +2,23 @@ let incomeData;
 let myIncome = [];
 let baseLine = 0;
 
+let data = [];
+
 let consumData;
 let myConsum = [];
 
 
 let karte;
+let myRadius;
+
+let slider;
+let sliderValue = 10; // Standardwert für den Slider
+let sliderLabel;
+
+
+// Erstellen Sie ein leeres Array, um die Jahre und Werte zu speichern
+let dataArray = [];
+
 
 function preload() {
     incomeData = loadTable('data2/EinkommenEu2.csv', 'csv', 'header');
@@ -40,8 +52,9 @@ function setup() {
         }
         myIncome[index].arrayOfData.push(rowsInTable[r].get('INDEX'));
         isoCountryOld = isoCountryNew;
-    }
 
+    }
+    // myRadius = map(currentCountry2.myCountryArea, 20000, 80000, 5, 200);
 
     let rowsInTable2 = consumData.getRows();
 
@@ -85,11 +98,23 @@ function setup() {
 let selectedCountry1 = "DEU";
 xBorder = 25;
 
+
 function draw() {
-    background(241);
+    background(41);
 
     let country1;
     let country2;
+
+    // Slider erstellen und positionieren
+    slider = createSlider(0, 10, sliderValue);
+    slider.position(windowWidth / 2 + 250, windowHeight / 2 + 480);
+    slider.style('width', '500px');
+
+    // Label für den Slider erstellen und näher an den Slider positionieren
+    sliderLabel = createP('Jahr: 2012'); // Standardbeschriftung
+    sliderLabel.position(slider.x + slider.width + 10, slider.y - 10); // Näher am Slider positionieren
+    sliderLabel.style('color', 'white');
+    sliderLabel.style('font-size', '18px');
 
     for (let country = 0; country < myIncome.length; country++) {
         if (myIncome[country].myCountryISO === selectedCountry1) {
@@ -149,12 +174,19 @@ function draw() {
     fill(200);
 
     textSize(18);
-    // text ("Einkommen der Deutschen", 20, 300);
-    // text ("Lebenshaltungskosten Deutschland", 700, 300);
     textSize(12);
+
+    // Den Wert des Sliders aktualisieren
+    sliderValue = slider.value();
+    sliderLabel.html('Jahr: ' + (2012 + sliderValue)); // Aktualisiere die Beschriftung basierend auf dem Slider-Wert
+
+    // Einkommen
+    fill(0, 255, 0, 255);
+    ellipse(windowWidth / 2 + 390, windowHeight / 2 + 100, myRadius);
+
+    // Lebenshaltungskosten
+    fill(255, 0, 0, 255);
+    ellipse(windowWidth / 2 + 390, windowHeight / 2 + 100, myRadius2);
 
     // noLoop();
 }
-
-
-

@@ -11,6 +11,7 @@ class Country {
         this.myWidth = 25;
         this.myColorConsume = color(50, 150, 55);
         this.myColorIncome = color(150, 50, 55);
+
         this.estaEncima = false;
 
         this.miColorNormal2 = color(255, 150, 100, 150);
@@ -37,9 +38,9 @@ class Country {
 
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let secX = this.xBorder + (year) * this.stepX;
-
             let secY = map(this.arrayOfData[year], 80, 150, lineaBase, 150);
             // console.log(this.arrayOfData[year])
+
 
             let currentPoint = createVector(secX, secY);
             this.arrayOfpoints.push(currentPoint);
@@ -163,5 +164,6 @@ class Country {
     //         text(this.myCountryISO, myX + 30, myY + 15);
     //     } else { this.myColorIncome = color(150, 50, 55); }
     // } // end of display
+
 
 }  // end of class
