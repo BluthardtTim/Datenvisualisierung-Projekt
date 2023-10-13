@@ -83,6 +83,7 @@ function setup() {
 }
 
 let selectedCountry1 = "DEU";
+xBorder = 25;
 
 function draw() {
     background(241);
@@ -98,6 +99,13 @@ function draw() {
             myConsum[country].drawCountryGDP2();
         }
     }
+
+
+    // Zeichne X- und Y-Achsen
+    line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
+    line(xBorder, baseLine, xBorder , 100); // X-Achse
+
+
 
     karteX = 500;
 
