@@ -43,8 +43,6 @@ function setup() {
     }
 
 
-
-
     let rowsInTable2 = consumData.getRows();
 
     
@@ -60,14 +58,6 @@ function setup() {
         myConsum[index2].arrayOfData2.push(rowsInTable2[r].get('OBS_VALUE'));
         isoCountryOld = isoCountryNew;
     }
-
-
-    // const showCountry = myIncome.filter(checkCountry)
-
-    // console.log(showCountry)
-    // function checkCountry(){
-    //     myIncome.myCountryISO === "DEU";
-    // }
 
 
     // just checking if all data are in objets
@@ -90,22 +80,6 @@ function setup() {
     }
 
     
-
-
-    // Consum der Eu Länder
-    for (let myRow of consumData.rows) {
-        let currentConsume = new Country();
-
-        currentConsume.myValue = myRow.get('OBS_VALUE');
-        currentConsume.myCountry = myRow.get('geo');
-        currentConsume.myTime = myRow.get('TIME_PERIOD');
-        currentConsume.mySize = map(currentConsume.myValue, 80, 150, 0, 500);
-
-        if (currentConsume.myCountry === "DE:Germany" && currentConsume.myTime > 2011) {
-            myConsum[i] = currentConsume;
-            i++;
-        }
-    }
 }
 
 let selectedCountry1 = "DEU";
@@ -125,18 +99,6 @@ function draw() {
         }
     }
 
-
-    
-    let currentX = 300;
-    let currentY = windowHeight / 2 + 180;
-
-
-    // for (let i = 0; i < myConsum.length; i++) {
-    //     myConsum[i].display(currentX, currentY);
-    //     currentX += myConsum[i].myWidth + 50;
-    // }
-
-    currentX = 270;
     karteX = 500;
 
     // Karte
@@ -145,11 +107,6 @@ function draw() {
     karte.resize(0, windowHeight - 200)
     image(karte, karteX + 25, 100)
 
-
-    // for (let t = 0; t < myIncome.length; t++) {
-    //     myConsum[t].display2(currentX, currentY);
-    //     currentX += myIncome[t].myWidth + 50;
-    // }
 
     stroke(255, 0, 0);
     line(windowWidth / 2, windowHeight, windowWidth / 2, 0);

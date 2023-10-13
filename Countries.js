@@ -1,9 +1,4 @@
-/*
-franklin hernandez-castro
-www.skizata.com
-TEC costa rica, hfg schw. gmuend
-2022
-*/
+
 
 class Country {
     constructor() {
@@ -42,8 +37,7 @@ class Country {
 
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let secX = this.xBorder + (year) * this.stepX;
-            // console.log(secX);
-            // secX = 50;
+
             let secY = map(this.arrayOfData[year], 80, 150, lineaBase, 150);
             // console.log(this.arrayOfData[year])
 
@@ -53,9 +47,6 @@ class Country {
 
         // console.log("arrayOfpoints" + this.arrayOfpoints);
 
-        // if(this.myCode === "DEU") {
-        //     this.selected=true;
-        // }
     };
 
     calculatePoints2(lineaBase) {
