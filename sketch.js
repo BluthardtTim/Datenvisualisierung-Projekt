@@ -18,10 +18,10 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     let i = 0;
     let t = 0;
-    baseLine = height-500;
+    baseLine = height - 500;
 
     console.log("total rows: " + incomeData.getRowCount());
-    console.log("total columns: " + incomeData.getColumnCount() );
+    console.log("total columns: " + incomeData.getColumnCount());
 
     // reading the rows
     let rowsInTable = incomeData.getRows();
@@ -33,7 +33,7 @@ function setup() {
     for (let r = 0; r < rowsInTable.length; r++) {
         let isoCountryNew = rowsInTable[r].get('LOCATION'); //
         if (isoCountryOld !== isoCountryNew) {
-            let currentCountry = new Country ();
+            let currentCountry = new Country();
             currentCountry.myCountryISO = isoCountryNew;
             myIncome.push(currentCountry);
             index++;
@@ -45,12 +45,12 @@ function setup() {
 
     let rowsInTable2 = consumData.getRows();
 
-    
+
     let index2 = -1;
     for (let r = 0; r < rowsInTable2.length; r++) {
         let isoCountryNew = rowsInTable2[r].get('geo'); //
         if (isoCountryOld !== isoCountryNew) {
-            let currentCountry = new Country ();
+            let currentCountry = new Country();
             currentCountry.myCountryISO = isoCountryNew;
             myConsum.push(currentCountry);
             index2++;
@@ -79,7 +79,7 @@ function setup() {
 
     }
 
-    
+
 }
 
 let selectedCountry1 = "DEU";
@@ -88,22 +88,39 @@ xBorder = 25;
 function draw() {
     background(241);
 
+    let country1;
+    let country2;
+
     for (let country = 0; country < myIncome.length; country++) {
         if (myIncome[country].myCountryISO === selectedCountry1) {
             myIncome[country].drawCountryGDP();
+            country1 = myIncome[country];
         }
     }
 
     for (let country = 0; country < myConsum.length; country++) {
         if (myConsum[country].myCountryISO === selectedCountry1) {
             myConsum[country].drawCountryGDP2();
+            country2 = myConsum[country];
         }
     }
 
 
+    fill(237, 34, 93, 50);
+    noStroke();
+    beginShape();
+    for (let i = 0; i < country1.arrayOfpoints.length; i++) {
+        vertex(country1.arrayOfpoints[i].x, country1.arrayOfpoints[i].y);
+    }
+    for (let i = country2.arrayOfpoints2.length - 1; i >= 0; i--) {
+        vertex(country2.arrayOfpoints2[i].x, country2.arrayOfpoints2[i].y);
+    }
+    endShape(CLOSE);
+
+
     // Zeichne X- und Y-Achsen
     line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
-    line(xBorder, baseLine, xBorder , 100); // X-Achse
+    line(xBorder, baseLine, xBorder, 100); // X-Achse
 
 
 
