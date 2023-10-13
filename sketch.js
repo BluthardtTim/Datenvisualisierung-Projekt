@@ -10,7 +10,7 @@ let karte;
 
 function preload() {
     incomeData = loadTable('data2/EinkommenEu2.csv', 'csv', 'header');
-    consumData = loadTable('data2/konsumpreisindex_eu.csv', 'csv', 'header');
+    consumData = loadTable('data2/konsumpreisindex_eu3.csv', 'csv', 'header');
     karte = loadImage('MapChart_Map-2.png');
 }
 
@@ -18,7 +18,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     let i = 0;
     let t = 0;
-    baseLine = height-50;
+    baseLine = height-500;
 
     console.log("total rows: " + incomeData.getRowCount());
     console.log("total columns: " + incomeData.getColumnCount() );
@@ -45,9 +45,6 @@ function setup() {
 
 
 
-
-
-
     let rowsInTable2 = consumData.getRows();
 
     
@@ -65,26 +62,18 @@ function setup() {
     }
 
 
+    // const showCountry = myIncome.filter(checkCountry)
 
+    // console.log(showCountry)
+    // function checkCountry(){
+    //     myIncome.myCountryISO === "DEU";
+    // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
     // just checking if all data are in objets
     for (let c = 0; c < myIncome.length; c++) {
-        console.log("myCountry name: " + myIncome [c].myCountryISO );
-        console.log("data: " + myIncome [c].arrayOfData );
+        // console.log("myCountry name: " + myIncome [c].myCountryISO );
+        // console.log("data: " + myIncome [c].arrayOfData );
     }
 
 
@@ -103,41 +92,6 @@ function setup() {
     
 
 
-    // // Einkommen der Eu Länder
-    // for (let myRow of incomeData.rows) {
-    //     let currentIncome = new Country();
-
-    //     currentIncome.myValue = myRow.get('INDEX');
-    //     currentIncome.myLocation = myRow.get('LOCATION');
-    //     currentIncome.myTime = myRow.get('TIME');
-    //     currentIncome.mySize = map(currentIncome.myValue, 80, 150, 0, 500);
-
-    //     if (currentIncome.myLocation === "GRC" && currentIncome.myTime > 2011) {
-    //         myIncome[t] = currentIncome;
-    //         t++;
-    //     }
-
-
-    //         let year = myRow.getNum('TIME')
-    //         let income = myRow.getNum('INDEX')
-
-    //         let currentPaar = [year, income]
-    //         data.push([currentPaar])
-
-    //         // let currentPaar = createVector (year,income);
-    //         // // arrayOfData.push(currentPaar)
-    //     console.log(data)
-    // }
-
-
-
-
-
-    
-    
-    // drawLineChart(data);
-    // drawLineChart(selectedCountry);
-
     // Consum der Eu Länder
     for (let myRow of consumData.rows) {
         let currentConsume = new Country();
@@ -154,16 +108,21 @@ function setup() {
     }
 }
 
+let selectedCountry1 = "DEU";
 
 function draw() {
     background(241);
 
-
-    for (let country = 0; country < myIncome.length; country++) { // countries
-        myIncome[country].drawCountryGDP();
+    for (let country = 0; country < myIncome.length; country++) {
+        if (myIncome[country].myCountryISO === selectedCountry1) {
+            myIncome[country].drawCountryGDP();
+        }
     }
-    for (let country = 0; country < myConsum.length; country++) { // countries
-        myConsum[country].drawCountryGDP2();
+
+    for (let country = 0; country < myConsum.length; country++) {
+        if (myConsum[country].myCountryISO === selectedCountry1) {
+            myConsum[country].drawCountryGDP2();
+        }
     }
 
 
@@ -205,49 +164,5 @@ function draw() {
     // noLoop();
 }
 
-
-
-
-
-// function drawLineChart(countryCode) {
-//     // Finde das ausgewählte Land in den Daten
-//     let countryData = null;
-//     for (let i = 0; i < data.length; i++) {
-//         if (data[i][0] === countryCode) {
-//             countryData = data[i][1];
-//             break;
-//         }
-//     }
-//     console.log(countryData[2])
-//     console.log(value)
-
-//     if (countryData) {
-//         // Zeichne das Liniendiagramm
-//         let xSpacing = width / (countryData.length - 1);
-//         beginShape();
-//         noFill();
-//         stroke(50)
-//         strokeWeight(2)
-//         for (let i = 0; i < countryData.length; i++) {
-//             console.log(countryData[i].value)
-//             let x = i * xSpacing;
-//             let y = map(countryData[i].value, 0, 80000, 0, 500);
-
-//             // let currentPoint = createVector (secX,secY);
-//             // arrayOfpoints.push(currentPoint);
-//             // console.log(arrayOfpoints)
-
-//             // console.log(arrayOfpoints)
-
-//             // ellipse(arrayOfpoints[i].year, arrayOfpoints[i].value, 3,3);
-
-
-//             vertex(x, y);
-//             // Zeichne eine Markierung an jedem Punkt
-//             ellipse(x, y, 5, 5);
-//         }
-//         endShape();
-//     }
-// }
 
 

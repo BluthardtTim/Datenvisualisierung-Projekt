@@ -18,8 +18,8 @@ class Country {
         this.myColorIncome = color(150, 50, 55);
         this.estaEncima = false;
 
-        this.miColorNormal = color(255, 150, 100, 150);
-        this.miColorNormal2 = color(10, 150, 10, 150);
+        this.miColorNormal2 = color(255, 150, 100, 150);
+        this.miColorNormal = color(10, 150, 10, 150);
         this.miColorOver = color(255);
         
         this.arrayOfpoints = [];
@@ -38,20 +38,20 @@ class Country {
 
 
     calculatePoints(lineaBase) {
-        console.log("length: " + this.arrayOfData.length);
+        // console.log("length: " + this.arrayOfData.length);
 
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let secX = this.xBorder + (year) * this.stepX;
-            console.log(secX);
+            // console.log(secX);
             // secX = 50;
             let secY = map(this.arrayOfData[year], 80, 150, lineaBase, 150);
-            console.log(this.arrayOfData[year])
+            // console.log(this.arrayOfData[year])
 
             let currentPoint = createVector(secX, secY);
             this.arrayOfpoints.push(currentPoint);
         }
 
-        console.log("arrayOfpoints" + this.arrayOfpoints);
+        // console.log("arrayOfpoints" + this.arrayOfpoints);
 
         // if(this.myCode === "DEU") {
         //     this.selected=true;
@@ -59,7 +59,7 @@ class Country {
     };
 
     calculatePoints2(lineaBase) {
-        console.log("length: " + this.arrayOfData2.length);
+        // console.log("length: " + this.arrayOfData2.length);
 
         for (let year2 = 0; year2 < this.arrayOfData2.length; year2++) {
             let secX2 = this.xBorder + (year2) * this.stepX;
@@ -68,7 +68,7 @@ class Country {
             this.arrayOfpoints2.push(currentPoint);
         }
 
-        console.log("arrayOfpoints2" + this.arrayOfpoints2);
+        // console.log("arrayOfpoints2" + this.arrayOfpoints2);
 
     
     };
@@ -77,6 +77,7 @@ class Country {
     drawCountryGDP() {
 
         for (let year = 0; year < this.arrayOfData.length; year++) {
+            // if (this.arrayOfData[year].myCountryISO === "DEU") {
             if (this.overMe || this.selected) {
                 fill(this.miColorOver);
                 stroke(this.miColorOver);
@@ -136,40 +137,40 @@ class Country {
 
 
 
-    display(myX, myY) {
-        this.estaEncima = mouseX > myX && mouseX < myX + this.myWidth &&
-            mouseY > myY - this.mySize && mouseY < myY;
+    // display(myX, myY) {
+    //     this.estaEncima = mouseX > myX && mouseX < myX + this.myWidth &&
+    //         mouseY > myY - this.mySize && mouseY < myY;
 
-        noStroke();
-        fill(this.myColorIncome);
-        rect(myX, myY, this.myWidth, -this.mySize);
+    //     noStroke();
+    //     fill(this.myColorIncome);
+    //     rect(myX, myY, this.myWidth, -this.mySize);
 
-        if (this.estaEncima) {
-            this.myColorConsume = color(50, 150, 55, 150);
-            fill(200);
-            text(this.myValue, myX, myY + 30);
-            text(this.myCountry, myX, myY + 15);
-            text(this.myCountryISO, myX + 30, myY + 15);
-        } else { this.myColorConsume = color(50, 150, 55); }
-    } // end of display
+    //     if (this.estaEncima) {
+    //         this.myColorConsume = color(50, 150, 55, 150);
+    //         fill(200);
+    //         text(this.myValue, myX, myY + 30);
+    //         text(this.myCountry, myX, myY + 15);
+    //         text(this.myCountryISO, myX + 30, myY + 15);
+    //     } else { this.myColorConsume = color(50, 150, 55); }
+    // } // end of display
 
 
 
-    display2(myX, myY) {
-        this.estaEncima = mouseX > myX && mouseX < myX + this.myWidth &&
-            mouseY > myY - this.mySize && mouseY < myY;
+    // display2(myX, myY) {
+    //     this.estaEncima = mouseX > myX && mouseX < myX + this.myWidth &&
+    //         mouseY > myY - this.mySize && mouseY < myY;
 
-        noStroke();
-        fill(this.myColorConsume);
-        rect(myX, myY, this.myWidth, -this.mySize);
+    //     noStroke();
+    //     fill(this.myColorConsume);
+    //     rect(myX, myY, this.myWidth, -this.mySize);
 
-        if (this.estaEncima) {
-            this.myColorIncome = color(150, 50, 55, 150);
-            fill(200);
-            text(this.myValue, myX, myY + 30);
-            text(this.myCountry, myX, myY + 15);
-            text(this.myCountryISO, myX + 30, myY + 15);
-        } else { this.myColorIncome = color(150, 50, 55); }
-    } // end of display
+    //     if (this.estaEncima) {
+    //         this.myColorIncome = color(150, 50, 55, 150);
+    //         fill(200);
+    //         text(this.myValue, myX, myY + 30);
+    //         text(this.myCountry, myX, myY + 15);
+    //         text(this.myCountryISO, myX + 30, myY + 15);
+    //     } else { this.myColorIncome = color(150, 50, 55); }
+    // } // end of display
 
 }  // end of class
