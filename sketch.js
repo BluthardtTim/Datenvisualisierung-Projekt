@@ -18,7 +18,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     let i = 0;
     let t = 0;
-    baseLine = height - 500;
+    baseLine = height - 200;
 
     console.log("total rows: " + incomeData.getRowCount());
     console.log("total columns: " + incomeData.getColumnCount());
@@ -106,10 +106,22 @@ function draw() {
     }
 
 
-    fill(237, 34, 93, 50);
-    noStroke();
+
+    // Zeichne X- und Y-Achsen
+    line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
+    line(xBorder, baseLine, xBorder, 200); // X-Achse
+
+
+
+    noStroke()
+    fill(0, 255, 0, 50);
     beginShape();
     for (let i = 0; i < country1.arrayOfpoints.length; i++) {
+        // if (country1.arrayOfpoints[i].y < country2.arrayOfpoints2[i].y) {
+        //     fill(0, 255, 0, 50); // Grün, wenn Graf 1 oben ist
+        // } else {
+        //     fill(255, 0, 0, 50); // Rot, wenn Graf 2 oben ist
+        // }
         vertex(country1.arrayOfpoints[i].x, country1.arrayOfpoints[i].y);
     }
     for (let i = country2.arrayOfpoints2.length - 1; i >= 0; i--) {
@@ -118,9 +130,7 @@ function draw() {
     endShape(CLOSE);
 
 
-    // Zeichne X- und Y-Achsen
-    line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
-    line(xBorder, baseLine, xBorder, 100); // X-Achse
+
 
 
 
