@@ -7,13 +7,12 @@ let data = [];
 let consumData;
 let myConsum = [];
 
-
+let coordinates;
 let karte;
 let myRadius;
+let myRadius2;
 
-let slider;
-let sliderValue = 10; // Standardwert für den Slider
-let sliderLabel;
+let yearsSlider = '2022';
 
 
 // Erstellen Sie ein leeres Array, um die Jahre und Werte zu speichern
@@ -24,6 +23,7 @@ function preload() {
     incomeData = loadTable('data2/EinkommenEu2.csv', 'csv', 'header');
     consumData = loadTable('data2/konsumpreisindex_eu3.csv', 'csv', 'header');
     karte = loadImage('MapChart_Map-2.png');
+    coordinates = loadTable('data2/Koordinaten.csv', 'csv', 'header')
 }
 
 function setup() {
@@ -54,10 +54,8 @@ function setup() {
         isoCountryOld = isoCountryNew;
 
     }
-    // myRadius = map(currentCountry2.myCountryArea, 20000, 80000, 5, 200);
 
     let rowsInTable2 = consumData.getRows();
-
 
     let index2 = -1;
     for (let r = 0; r < rowsInTable2.length; r++) {
@@ -86,55 +84,49 @@ function setup() {
 
     }
 
-    for (let country = 0; country < myConsum.length; country++) { // countries
-        //calculates the pixel position of each year in the country
+    for (let country = 0; country < myConsum.length; country++) { 
         myConsum[country].calculatePoints2(baseLine);
-
     }
-
 
 }
 
-let selectedCountry1 = "DEU";
+let selectedCountry = "DEU";
 xBorder = 25;
+let slideYear = 11;
+
 
 
 function draw() {
     background(41);
 
+    // Karte
+    karteX = windowWidth / 2;
+    karte.resize(0, windowHeight - 200)
+    image(karte, karteX + 25, 100)
+    strokeWeight(0.5)
+    stroke(200)
+    
+    
+    // Zeichne X- und Y-Achsen
+    line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
+    line(xBorder, baseLine, xBorder, 200); // X-Achse
+
     let country1;
     let country2;
 
-    // Slider erstellen und positionieren
-    slider = createSlider(0, 10, sliderValue);
-    slider.position(windowWidth / 2 + 250, windowHeight / 2 + 480);
-    slider.style('width', '500px');
-
-    // Label für den Slider erstellen und näher an den Slider positionieren
-    sliderLabel = createP('Jahr: 2012'); // Standardbeschriftung
-    sliderLabel.position(slider.x + slider.width + 10, slider.y - 10); // Näher am Slider positionieren
-    sliderLabel.style('color', 'white');
-    sliderLabel.style('font-size', '18px');
-
     for (let country = 0; country < myIncome.length; country++) {
-        if (myIncome[country].myCountryISO === selectedCountry1) {
+        if (myIncome[country].myCountryISO === selectedCountry) {
             myIncome[country].drawCountryGDP();
             country1 = myIncome[country];
         }
     }
 
     for (let country = 0; country < myConsum.length; country++) {
-        if (myConsum[country].myCountryISO === selectedCountry1) {
+        if (myConsum[country].myCountryISO === selectedCountry) {
             myConsum[country].drawCountryGDP2();
             country2 = myConsum[country];
         }
     }
-
-
-
-    // Zeichne X- und Y-Achsen
-    line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
-    line(xBorder, baseLine, xBorder, 200); // X-Achse
 
 
 
@@ -156,18 +148,6 @@ function draw() {
 
 
 
-
-
-
-    karteX = 500;
-
-    // Karte
-    karteX = windowWidth / 2;
-
-    karte.resize(0, windowHeight - 200)
-    image(karte, karteX + 25, 100)
-
-
     stroke(255, 0, 0);
     line(windowWidth / 2, windowHeight, windowWidth / 2, 0);
     noStroke()
@@ -175,18 +155,53 @@ function draw() {
 
     textSize(18);
     textSize(12);
+    // text ("2015 = 100", 220, baseLine - 150);
 
-    // Den Wert des Sliders aktualisieren
-    sliderValue = slider.value();
-    sliderLabel.html('Jahr: ' + (2012 + sliderValue)); // Aktualisiere die Beschriftung basierend auf dem Slider-Wert
 
-    // Einkommen
-    fill(0, 255, 0, 255);
-    ellipse(windowWidth / 2 + 390, windowHeight / 2 + 100, myRadius);
+    // Draw circles for each country
+    for (let i = 0; i < myIncome.length; i++) {
+        let country = myIncome[i];
+        let countryData = getCountryData(country.myCountryISO);
 
-    // Lebenshaltungskosten
-    fill(255, 0, 0, 255);
-    ellipse(windowWidth / 2 + 390, windowHeight / 2 + 100, myRadius2);
+        if (countryData) {
+            let x = windowWidth / 2 + 20 + countryData.obj.X; // X-Koordinate des Landes
+            let y = countryData.obj.Y + 150; // Y-Koordinate des Landes
 
+            let value1 = country.arrayOfData[slideYear]; // Wert aus dem Datenarray des Einkommens
+            let value2 = myConsum[i].arrayOfData2[slideYear]; // Wert aus dem Datenarray des Verbrauchs
+
+            let circleSize1 = map(value1, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 1
+            let circleSize2 = map(value2, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 2
+
+            if(circleSize1 < circleSize2){
+                noStroke();
+                fill(255, 0, 0, 150); // rot
+                ellipse(x, y, circleSize2, circleSize2);
+
+                fill(0, 255, 0, 150); // grün
+                ellipse(x, y, circleSize1, circleSize1);
+            } else {
+                noStroke();
+                fill(0, 255, 0, 150); // grün
+                ellipse(x, y, circleSize1, circleSize1);
+
+                fill(255, 0, 0, 150); // rot
+                ellipse(x, y, circleSize2, circleSize2);
+            }
+        }
+    }
     // noLoop();
+}
+
+
+function getCountryData(iso) {
+    for (let i = 0; i < coordinates.getRowCount(); i++) {
+        let isoCode = coordinates.getString(i, 'ISO');
+        if (isoCode === iso) {
+            let x = coordinates.getNum(i, 'X');
+            let y = coordinates.getNum(i, 'Y');
+            return { obj: { X: x, Y: y } };
+        }
+    }
+    return null;
 }

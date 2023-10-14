@@ -12,6 +12,7 @@ class Country {
         this.myColorConsume = color(50, 150, 55);
         this.myColorIncome = color(150, 50, 55);
 
+        this.overMe = false;
         this.estaEncima = false;
 
         this.miColorNormal2 = color(255, 150, 100, 150);
@@ -31,6 +32,7 @@ class Country {
         this.xBorder = 25;
 
     }
+    
 
 
     calculatePoints(lineaBase) {
@@ -38,7 +40,7 @@ class Country {
 
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let secX = this.xBorder + (year) * this.stepX;
-            let secY = map(this.arrayOfData[year], 80, 150, lineaBase, 150);
+            let secY = map(this.arrayOfData[year], 80, 150, lineaBase, 100);
             // console.log(this.arrayOfData[year])
 
 
@@ -55,7 +57,7 @@ class Country {
 
         for (let year2 = 0; year2 < this.arrayOfData2.length; year2++) {
             let secX2 = this.xBorder + (year2) * this.stepX;
-            let secY2 = map(this.arrayOfData2[year2], 80, 150, lineaBase, 150);
+            let secY2 = map(this.arrayOfData2[year2], 80, 150, lineaBase, 100);
             let currentPoint = createVector(secX2, secY2);
             this.arrayOfpoints2.push(currentPoint);
         }
@@ -67,6 +69,8 @@ class Country {
 
 
     drawCountryGDP() {
+
+        this.isOverMe();
 
         for (let year = 0; year < this.arrayOfData.length; year++) {
             // if (this.arrayOfData[year].myCountryISO === "DEU") {
@@ -103,6 +107,7 @@ class Country {
                 fill(this.miColorOver);
                 stroke(this.miColorOver);
                 strokeWeight(3);
+                console.log("hover")
             } else {
                 fill(this.miColorNormal2);
                 stroke(this.miColorNormal2);
@@ -124,7 +129,24 @@ class Country {
 
     };
 
+    
 
+    isOverMe () {
+        let ifAny = false;
+        for (let year = 0; year < this.arrayOfData.length; year++) {
+            let distance = dist(mouseX, mouseY, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+            if (distance < 5) {
+                // fill(200);
+                // textSize(24);
+                // text( (this.arrayOfData[year].y/ 1000000000000).toFixed(2) + " MoM",       this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-70);
+                // text( this.myName, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-45);
+                // text( this.arrayOfData[year].x, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-20);
+                console.log("hover")
+                ifAny = true;
+            }
+        }
+        this.overMe = ifAny;
+    };
 
 
 
