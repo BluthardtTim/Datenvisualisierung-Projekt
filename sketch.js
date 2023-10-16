@@ -12,7 +12,7 @@ let karte;
 
 let sliderValue = 0;
 
-let selectedCountry = "HHH";
+let selectedCountry = "platzhalter";
 let xBorder = 100;
 
 let currentYear;
@@ -110,7 +110,7 @@ function draw() {
         else sliderValue = 0;
     }
 
-    if(selectedCountry != 'HHH'){
+    if(selectedCountry != 'platzhalter'){
     myButton.display();
     }
     
@@ -127,7 +127,7 @@ function draw() {
     stroke(255)
 
 
-    if(selectedCountry != 'HHH'){
+    if(selectedCountry != 'platzhalter'){
     // Zeichne X- und Y-Achsen
     line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
     line(xBorder, baseLine, xBorder, 200); // X-Achse
@@ -150,7 +150,7 @@ function draw() {
             myConsum[country].drawCountryGDP2();
             fill(255)
             noStroke();
-            if(selectedCountry != 'HHH'){
+            if(selectedCountry != 'platzhalter'){
             text(myConsum[country].myCountryISO, xBorder + 20, 250);
             }
             country2 = myConsum[country];
