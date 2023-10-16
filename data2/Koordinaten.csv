@@ -8,7 +8,7 @@ Greece,GRC,0.82, 0.89
 Ireland,IRL,0.33,0.55
 Italy,ITA,0.62,0.83
 Luxembourg,LUX,0.525,0.655
-Netherlands, NLD,0.521,0.590
+Netherlands,NLD,0.521,0.590
 Portugal,PRT,0.251,0.850
 Slovakia,SVK,0.73,0.669
 Spain,ESP,0.34,0.859
@@ -16,16 +16,15 @@ Slovenia,SVN,0.663,0.742
 Latvia,LVA,0.775,0.464
 Lithuania,LTU,0.77,0.51
 Switzerland,CHE,0.558, 0.725
-Czech Republix,CZE, 0.66,0.955
-Denmark,DNK,0.66,0.410
-Estonia,EST,0.786,0.465
-Hungary,HUN,0.706,0.734
-Island,ISL,0.240,0.310
+Czech Republix,CZE, 0.66,0.655
+Denmark,DNK,0.575,0.510
+Estonia,EST,0.780,0.420
+Hungary,HUN,0.726,0.714
+Island,ISL,0.310,0.245
 Norway,NOR,0.57,0.41
 Poland,POL,0.73,0.59
 Sweden,SWE,0.64,0.36
 Turiye,TUR,1.02,0.84
-
 
 
 

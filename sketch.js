@@ -195,7 +195,7 @@ function draw() {
             if (circleSize1 < circleSize2) {
                 noStroke();
                 if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                    fill(255, 100, 100, 200); // helleres Rot beim Hovern
+                    fill(250,92,148, 255); // helleres Rot beim Hovern
                 } else {
                     strokeWeight(2);
                     stroke(250, 92, 148)
@@ -204,7 +204,7 @@ function draw() {
                 ellipse(x, y, circleSize2, circleSize2);
 
                 if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                    fill(100, 255, 100, 200); // helleres Grün beim Hovern
+                    fill(220,245,139, 255); // helleres Grün beim Hovern
                 } else {
                     strokeWeight(2);
                     stroke(220, 245, 139)
@@ -214,7 +214,7 @@ function draw() {
             } else {
                 noStroke();
                 if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                    fill(100, 255, 100, 200); // helleres Grün beim Hovern
+                    fill(220,245,139, 255); // helleres Grün beim Hovern
                 } else {
                     strokeWeight(2);
                     stroke(220, 245, 139)
@@ -223,7 +223,7 @@ function draw() {
                 ellipse(x, y, circleSize1, circleSize1);
 
                 if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                    fill(255, 100, 100, 200); // helleres Rot beim Hovern
+                    fill(250,92,148, 255); // helleres Rot beim Hovern
                 } else {
                     strokeWeight(2);
                     stroke(250, 92, 148)
@@ -235,7 +235,7 @@ function draw() {
     }
     fill(200);
     textSize(12);
-    text(frameRate().toFixed(2), 20, height - 30);
+    // text(frameRate().toFixed(2), 20, height - 30);
 
 }
 
