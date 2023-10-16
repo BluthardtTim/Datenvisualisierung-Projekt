@@ -183,6 +183,8 @@ function draw() {
 
         if (countryData) {
             let x = karteX+20+windowHeight * countryData.obj.X; // X-Koordinate des Landes
+
+
             let y = windowHeight * countryData.obj.Y; // Y-Koordinate des Landes
 
             let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
