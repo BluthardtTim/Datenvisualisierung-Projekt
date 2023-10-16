@@ -262,7 +262,7 @@ function draw() {
     let textInteract = "For more information interact with the map..."
     let textNamen = "Tim Bluthardt, Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer"
 
-    if (selectedCountry === "HHH") {
+    if (selectedCountry === "platzhalter") {
         fill(255);
         //header
         textSize(50);
