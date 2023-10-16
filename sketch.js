@@ -92,6 +92,7 @@ function setup() {
         myConsum[country].calculatePoints2(baseLine);
     }
 
+    
     myButton = new Button(40, 70, 20, "Abspielen");
 }
 
@@ -109,7 +110,10 @@ function draw() {
         else sliderValue = 0;
     }
 
+    if(selectedCountry != 'HHH'){
     myButton.display();
+    }
+    
     fill(255);
 
     noStroke();
