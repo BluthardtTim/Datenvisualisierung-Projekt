@@ -13,11 +13,10 @@ class Country {
         this.myColorIncome = color(150, 50, 55);
 
         this.overMe = false;
-        this.estaEncima = false;
 
         this.miColorNormal2 = color(255, 150, 100, 150);
         this.miColorNormal = color(10, 150, 10, 150);
-        this.miColorOver = color(255);
+        this.miColorOver = color(50);
         
         this.arrayOfpoints = [];
         this.arrayOfpoints2 = [];
@@ -28,8 +27,8 @@ class Country {
 
         this.numYears = 13; // for the distribution of the points in Xs
         // this.stepX = (windowWidth - 150) / this.numYears;
-        this.stepX = (windowWidth / 2) / this.numYears;
-        this.xBorder = 25;
+        this.stepX = (windowWidth / 2 - 100) / this.numYears;
+        this.xBorder = 100;
 
     }
     
@@ -82,6 +81,8 @@ class Country {
                 fill(this.miColorNormal);
                 stroke(this.miColorNormal);
                 strokeWeight(1);
+                // text(year, 200)
+                
             }
 
             ellipse(this.arrayOfpoints[year].x, this.arrayOfpoints[year].y, 3, 3);
@@ -93,6 +94,16 @@ class Country {
                 noStroke();
                 textSize(18);
                 text(this.myCode, this.arrayOfpoints[this.arrayOfData.length - 1].x + 5, this.arrayOfpoints[this.arrayOfData.length - 1].y);
+                fill(0);
+                noStroke();
+                text (2011 + year, this.arrayOfpoints[year].x - 15, baseLine + 20);
+            } else {
+                textSize(12);
+                fill(200);
+                noStroke();
+                text (2011 + year, this.arrayOfpoints[year].x - 15, baseLine + 20);
+                text (80, this.xBorder - 30, baseLine);
+               
             }
 
         }
@@ -101,13 +112,13 @@ class Country {
 
 
     drawCountryGDP2() {
+        // this.isOverMe2();
 
         for (let year2 = 0; year2 < this.arrayOfData2.length; year2++) {
-            if (this.overMe || this.selected) {
+            if (this.overMe2 || this.selected) {
                 fill(this.miColorOver);
                 stroke(this.miColorOver);
                 strokeWeight(3);
-                console.log("hover")
             } else {
                 fill(this.miColorNormal2);
                 stroke(this.miColorNormal2);
@@ -131,61 +142,54 @@ class Country {
 
     
 
-    isOverMe () {
+    isOverMe() {
         let ifAny = false;
+        let distances = []; // Array für die Abstände zu den Linien
+    
+        // Berechnen der Abstände zu den Linien
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let distance = dist(mouseX, mouseY, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
-            if (distance < 5) {
-                // fill(200);
-                // textSize(24);
-                // text( (this.arrayOfData[year].y/ 1000000000000).toFixed(2) + " MoM",       this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-70);
-                // text( this.myName, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-45);
-                // text( this.arrayOfData[year].x, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y-20);
-                console.log("hover")
+            distances.push(distance);
+        }
+
+        for (let year = 0; year < this.arrayOfData.length; year++) {
+            let distance = distances[year];
+            if (distance < 300 && mouseY > 200 && mouseY < baseLine && mouseX > this.arrayOfpoints[year].x - this.stepX / 2 && mouseX < this.arrayOfpoints[year].x + this.stepX / 2) {
+                fill(50);
+                textSize(12);
+                text(this.arrayOfData[year] + "  INDEX", this.arrayOfpoints[year].x + 10, this.arrayOfpoints[year].y + 50);
+                text(this.arrayOfData2[year] + "  INDEX", this.arrayOfpoints[year].x + 10, this.arrayOfpoints[year].y + 70);
+                strokeWeight(1.5);
+                stroke('orange');
+                line(this.arrayOfpoints[year].x, 200, this.arrayOfpoints[year].x, baseLine);
+                sliderValue = year;
                 ifAny = true;
             }
         }
+        
         this.overMe = ifAny;
     };
+    
+    
+    // isOverMe2 () {
+    //     let ifAny2 = false;
+    //     for (let year = 0; year < this.arrayOfData2.length; year++) {
+    //         let distance = dist(mouseX, mouseY, this.arrayOfpoints2[year].x, this.arrayOfpoints2[year].y);
+    //         if (distance < 5 ) {
+    //             fill(200);
+    //             textSize(24);
+    //             text( (this.arrayOfData2[year]) + "  INDEX", this.arrayOfpoints2[year].x, this.arrayOfpoints2[year].y-70);
+    //             ifAny2 = true;
+    //         }
+    //     }
+    //     this.overMe2 = ifAny2;
+    // };
 
-
-
-
-    // display(myX, myY) {
-    //     this.estaEncima = mouseX > myX && mouseX < myX + this.myWidth &&
-    //         mouseY > myY - this.mySize && mouseY < myY;
-
-    //     noStroke();
-    //     fill(this.myColorIncome);
-    //     rect(myX, myY, this.myWidth, -this.mySize);
-
-    //     if (this.estaEncima) {
-    //         this.myColorConsume = color(50, 150, 55, 150);
-    //         fill(200);
-    //         text(this.myValue, myX, myY + 30);
-    //         text(this.myCountry, myX, myY + 15);
-    //         text(this.myCountryISO, myX + 30, myY + 15);
-    //     } else { this.myColorConsume = color(50, 150, 55); }
-    // } // end of display
-
-
-
-    // display2(myX, myY) {
-    //     this.estaEncima = mouseX > myX && mouseX < myX + this.myWidth &&
-    //         mouseY > myY - this.mySize && mouseY < myY;
-
-    //     noStroke();
-    //     fill(this.myColorConsume);
-    //     rect(myX, myY, this.myWidth, -this.mySize);
-
-    //     if (this.estaEncima) {
-    //         this.myColorIncome = color(150, 50, 55, 150);
-    //         fill(200);
-    //         text(this.myValue, myX, myY + 30);
-    //         text(this.myCountry, myX, myY + 15);
-    //         text(this.myCountryISO, myX + 30, myY + 15);
-    //     } else { this.myColorIncome = color(150, 50, 55); }
-    // } // end of display
-
+    clickOverMe () {
+        for (let year = 0; year < this.arrayOfData.length; year++) {
+            let distance = dist(mouseX, mouseY, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+            if (distance < 5) this.selected = !this.selected;
+        }
+    }
 
 }  // end of class
