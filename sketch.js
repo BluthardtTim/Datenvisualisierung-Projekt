@@ -182,8 +182,8 @@ function draw() {
         let countryData = getCountryData(country.myCountryISO);
 
         if (countryData) {
-            let x = windowWidth / 2 + 20 + countryData.obj.X; // X-Koordinate des Landes
-            let y = countryData.obj.Y + 150; // Y-Koordinate des Landes
+            let x = karteX + windowHeight * countryData.obj.X + 20; // X-Koordinate des Landes
+            let y = windowHeight * countryData.obj.Y; // Y-Koordinate des Landes
 
             let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
             let value2 = myConsum[i].arrayOfData2[sliderValue]; // Wert aus dem Datenarray des Verbrauchs
