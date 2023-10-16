@@ -96,7 +96,7 @@ function setup() {
     }
 
     
-    myButton = new Button(40, 70, 20, "Abspielen");
+    myButton = new Button(xBorder, height - 75, 20, "Abspielen");
 }
 
 
@@ -290,6 +290,35 @@ function draw() {
         textSize(12);
         text(textNamen, 50, height - 50);
     }
+
+    if (selectedCountry != "platzhalter") {
+                //header
+                fill(255);
+                textSize(32);
+                text(textHead, xBorder, 100);
+
+            // legende
+            colorMode(RGB);
+             //einkommen linie
+            stroke(220, 245, 139);
+            strokeWeight(5);
+            line(xBorder,baseLine + 52, xBorder + 20, baseLine + 52);
+            //preise linie
+            stroke(250, 92, 148);
+            strokeWeight(5);
+            line(xBorder + 110, baseLine + 52, xBorder + 130, baseLine + 52);
+
+            noStroke();
+            textSize(12);
+            text("ø income", xBorder + 30, baseLine + 55 );
+            text("ø consumer prices", xBorder + 140, baseLine + 55);
+            text("2015 = 100", xBorder + 265, baseLine + 56)
+
+
+
+
+    }
+
 
 }
 
