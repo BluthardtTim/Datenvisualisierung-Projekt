@@ -236,7 +236,7 @@ function draw() {
     }
     fill(200);
     textSize(12);
-    // text(frameRate().toFixed(2), 20, height - 30);
+    text(frameRate().toFixed(2), 20, height - 30);
 
 }
 
