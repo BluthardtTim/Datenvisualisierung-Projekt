@@ -4,6 +4,7 @@ let baseLine = 0;
 
 let data = [];
 
+
 let consumData;
 let myConsum = [];
 
@@ -113,7 +114,7 @@ function draw() {
     fill(255);
 
     noStroke();
-    text('Jahr: ' + ( 2011 + sliderValue),xBorder, baseLine + 100);
+    text('Jahr: ' + (2011 + sliderValue), xBorder, baseLine + 100);
 
     // Karte
     karteX = windowWidth / 2 - 200;
@@ -182,7 +183,7 @@ function draw() {
         let countryData = getCountryData(country.myCountryISO);
 
         if (countryData) {
-            let x = karteX+20+windowHeight * countryData.obj.X; // X-Koordinate des Landes
+            let x = karteX + 20 + windowHeight * countryData.obj.X; // X-Koordinate des Landes
             let y = windowHeight * countryData.obj.Y; // Y-Koordinate des Landes
 
             let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
@@ -191,47 +192,62 @@ function draw() {
             let circleSize1 = map(value1, 70, 400, 10, 300); // Größe der Ellipse basierend auf Wert 1
             let circleSize2 = map(value2, 70, 400, 10, 300); // Größe der Ellipse basierend auf Wert 2
 
-        
-            if (circleSize1 < circleSize2) {
-                noStroke();
-                if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                    fill(250,92,148, 255); // helleres Rot beim Hovern
-                } else {
-                    strokeWeight(2);
-                    stroke(250, 92, 148)
-                    fill(250,92,148, 180); // rot
-                }
-                ellipse(x, y, circleSize2, circleSize2);
+            if (sliderValue == 4) {
 
-                if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                    fill(220,245,139, 255); // helleres Grün beim Hovern
-                } else {
-                    strokeWeight(2);
-                    stroke(220, 245, 139)
-                    fill(220,245,139, 180); // grün
-                }
+                strokeWeight(2);
+                stroke(200)
+                fill(100); 
                 ellipse(x, y, circleSize1, circleSize1);
-            } else {
-                noStroke();
-                if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                    fill(220,245,139, 255); // helleres Grün beim Hovern
-                } else {
-                    strokeWeight(2);
-                    stroke(220, 245, 139)
-                    fill(220,245,139, 180); // grün
-                }
-                ellipse(x, y, circleSize1, circleSize1);
+            }
 
-                if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                    fill(250,92,148, 255); // helleres Rot beim Hovern
+            else {
+                if (circleSize1 < circleSize2) {
+                    noStroke();
+                    if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
+                        fill(250, 92, 148, 255); // helleres Rot beim Hovern
+                    } else {
+                        strokeWeight(2);
+                        stroke(250, 92, 148)
+                        fill(250, 92, 148, 180); // rot
+                    }
+                    ellipse(x, y, circleSize2, circleSize2);
+
+                    if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
+                        fill(220, 245, 139, 255); // helleres Grün beim Hovern
+                    } else {
+                        strokeWeight(2);
+                        stroke(220, 245, 139)
+                        fill(220, 245, 139, 180); // grün
+                    }
+                    ellipse(x, y, circleSize1, circleSize1);
                 } else {
-                    strokeWeight(2);
-                    stroke(250, 92, 148)
-                    fill(250,92,148, 180); // rot
+                    noStroke();
+                    if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
+                        fill(220, 245, 139, 255); // helleres Grün beim Hovern
+                    } else {
+                        strokeWeight(2);
+                        stroke(220, 245, 139)
+                        fill(220, 245, 139, 180); // grün
+                    }
+                    ellipse(x, y, circleSize1, circleSize1);
+
+                    if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
+                        fill(250, 92, 148, 255); // helleres Rot beim Hovern
+                    } else {
+                        strokeWeight(2);
+                        stroke(250, 92, 148)
+                        fill(250, 92, 148, 180); // rot
+                    }
+                    ellipse(x, y, circleSize2, circleSize2);
                 }
-                ellipse(x, y, circleSize2, circleSize2);
+
+
+
             }
         }
+
+
+
     }
     fill(200);
     textSize(12);
@@ -260,7 +276,7 @@ function mouseReleased() {
         let countryData = getCountryData(country.myCountryISO);
 
         if (countryData) {
-            let x = karteX +windowHeight * countryData.obj.X; // X-Koordinate des Landes
+            let x = karteX + windowHeight * countryData.obj.X; // X-Koordinate des Landes
             let y = windowHeight * countryData.obj.Y; // Y-Koordinate des Landes
 
             let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
@@ -272,16 +288,16 @@ function mouseReleased() {
             let distance1 = dist(mouseX, mouseY, x, y);
             let distance2 = dist(mouseX, mouseY, x, y);
 
-           
-                if (distance2 < circleSize2) {
-                    selectedCountry = country.myCountryISO;
-                    console.log("Selected Country ISO: " + selectedCountry);
-                }
-            } else {
-                if (distance1 < circleSize1) {
-                    selectedCountry = country.myCountryISO;
-                    console.log("Selected Country ISO: " + selectedCountry);
-                
+
+            if (distance2 < circleSize2) {
+                selectedCountry = country.myCountryISO;
+                console.log("Selected Country ISO: " + selectedCountry);
+            }
+        } else {
+            if (distance1 < circleSize1) {
+                selectedCountry = country.myCountryISO;
+                console.log("Selected Country ISO: " + selectedCountry);
+
             }
         }
     }
