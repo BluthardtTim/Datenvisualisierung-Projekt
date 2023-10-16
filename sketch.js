@@ -92,7 +92,7 @@ function setup() {
         myConsum[country].calculatePoints2(baseLine);
     }
 
-    
+
     myButton = new Button(40, 70, 20, "Abspielen");
 }
 
@@ -110,10 +110,10 @@ function draw() {
         else sliderValue = 0;
     }
 
-    if(selectedCountry != 'HHH'){
-    myButton.display();
+    if (selectedCountry != 'HHH') {
+        myButton.display();
     }
-    
+
     fill(255);
 
     noStroke();
@@ -127,10 +127,10 @@ function draw() {
     stroke(255)
 
 
-    if(selectedCountry != 'HHH'){
-    // Zeichne X- und Y-Achsen
-    line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
-    line(xBorder, baseLine, xBorder, 200); // X-Achse
+    if (selectedCountry != 'HHH') {
+        // Zeichne X- und Y-Achsen
+        line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
+        line(xBorder, baseLine, xBorder, 200); // X-Achse
     }
 
 
@@ -150,8 +150,8 @@ function draw() {
             myConsum[country].drawCountryGDP2();
             fill(255)
             noStroke();
-            if(selectedCountry != 'HHH'){
-            text(myConsum[country].myCountryISO, xBorder + 20, 250);
+            if (selectedCountry != 'HHH') {
+                text(myConsum[country].myCountryISO, xBorder + 20, 250);
             }
             country2 = myConsum[country];
         }
@@ -251,6 +251,33 @@ function draw() {
     textSize(12);
     // text(frameRate().toFixed(2), 20, height - 30);
 
+    // Starttext nach (Re-)load
+    let textHead = "Einkommen\n" +
+                    "vs. Verbraucherpreise"
+    let textSubhead = "How is the standard of living in the EU?"
+    let textIntro = "Platzhaltertext\n"
+    let textInteract = "For more information interact with the map..."
+    let textNamen = "Tim Bluthardt, Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer"
+
+    if (selectedCountry === "HHH") {
+        fill(255);
+        //header
+        textSize(50);
+        text(textHead, 50, 100);
+        //Subheader
+        textSize(18);
+        text(textSubhead, 50, 250);
+        //intro
+        textSize(12);
+        text(textIntro, 50, 300)
+        //zur Interaktion auffordern
+        textSize(18);
+        text(textInteract, 50, 500)
+        //footer
+        textSize(12);
+        text(textNamen, 50, height - 50);
+    }
+
 }
 
 
@@ -290,7 +317,7 @@ function mouseReleased() {
             let distance2 = dist(mouseX, mouseY, x, y);
 
             console.log(countryData.obj.Name)
-            text(countryData.obj.Name, 200, 200); 
+            text(countryData.obj.Name, 200, 200);
 
             if (distance2 < circleSize2) {
                 selectedCountry = country.myCountryISO;
