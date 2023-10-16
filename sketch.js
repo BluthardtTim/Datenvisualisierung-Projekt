@@ -18,7 +18,8 @@ let xBorder = 100;
 let currentYear;
 let myButton;
 
-let backgroundColor = 255   ;
+
+let backgroundColor = 50;
 
 // Erstellen Sie ein leeres Array, um die Jahre und Werte zu speichern
 let dataArray = [];
@@ -27,7 +28,7 @@ let dataArray = [];
 function preload() {
     incomeData = loadTable('data2/EinkommenEu2.csv', 'csv', 'header');
     consumData = loadTable('data2/konsumpreisindex_eu3.csv', 'csv', 'header');
-    karte = loadImage('MapChart_Map-2.png');
+    karte = loadImage('europa_map_02.svg');
     coordinates = loadTable('data2/Koordinaten.csv', 'csv', 'header')
 }
 
@@ -91,7 +92,7 @@ function setup() {
         myConsum[country].calculatePoints2(baseLine);
     }
 
-    myButton = new Button (40, 70, 20, "Abspielen");
+    myButton = new Button(40, 70, 20, "Abspielen");
 }
 
 
@@ -103,22 +104,23 @@ function draw() {
     // sliderValue = slider.value();
 
     frameRate(20);
-    if (myButton.selected && frameCount%10 === 0) {
-        if(sliderValue < 11) {sliderValue++; console.log(sliderValue);}
+    if (myButton.selected && frameCount % 10 === 0) {
+        if (sliderValue < 11) { sliderValue++; console.log(sliderValue); }
         else sliderValue = 0;
     }
 
     myButton.display();
-    fill(0);
+    fill(255);
 
-    text('Jahr: ' + sliderValue, windowWidth / 2 + 150, height -40);
+    noStroke();
+    text('Jahr: ' + ( 2011 + sliderValue), windowWidth / 2 + 150, height - 40);
 
     // Karte
-    karteX = windowWidth / 2;
-    karte.resize(0, windowHeight - 200)
-    image(karte, karteX + 25, 100)
+    karteX = windowWidth / 2 - 200;
+    karte.resize(0, windowHeight)
+    image(karte, karteX + 25, 0)
     strokeWeight(0.5)
-    stroke(0)
+    stroke(255)
 
 
     // Zeichne X- und Y-Achsen
@@ -147,13 +149,13 @@ function draw() {
 
 
     noStroke()
-    fill(0, 255, 0, 50);
+    fill(255, 0, 0, 10);
     beginShape();
     for (let i = 0; i < country1.arrayOfpoints.length; i++) {
         // if (country1.arrayOfpoints[i].y < country2.arrayOfpoints2[i].y) {
-        //     fill(0, 255, 0, 50); // Grün, wenn Graf 1 oben ist
+        //     fill(255, 0, 0, 50); // Grün, wenn Graf 1 oben ist
         // } else {
-        //     fill(255, 0, 0, 50); // Rot, wenn Graf 2 oben ist
+        //     fill(0, 255, 0, 50); // Rot, wenn Graf 2 oben ist
         // }
         vertex(country1.arrayOfpoints[i].x, country1.arrayOfpoints[i].y);
     }
@@ -175,53 +177,57 @@ function draw() {
 
 
     // Draw circles for each country
-for (let i = 0; i < myIncome.length; i++) {
-    let country = myIncome[i];
-    let countryData = getCountryData(country.myCountryISO);
+    for (let i = 0; i < myIncome.length; i++) {
+        let country = myIncome[i];
+        let countryData = getCountryData(country.myCountryISO);
 
-    if (countryData) {
-        let x = windowWidth / 2 + 20 + countryData.obj.X; // X-Koordinate des Landes
-        let y = countryData.obj.Y + 150; // Y-Koordinate des Landes
+        if (countryData) {
+            let x = windowWidth / 2 + 20 + countryData.obj.X; // X-Koordinate des Landes
+            let y = countryData.obj.Y + 150; // Y-Koordinate des Landes
 
-        let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
-        let value2 = myConsum[i].arrayOfData2[sliderValue]; // Wert aus dem Datenarray des Verbrauchs
+            let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
+            let value2 = myConsum[i].arrayOfData2[sliderValue]; // Wert aus dem Datenarray des Verbrauchs
 
-        let circleSize1 = map(value1, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 1
-        let circleSize2 = map(value2, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 2
+            let circleSize1 = map(value1, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 1
+            let circleSize2 = map(value2, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 2
 
-        if (circleSize1 < circleSize2) {
-            noStroke();
-            if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                fill(255, 100, 100, 200); // helleres Rot beim Hovern
+            if (circleSize1 < circleSize2) {
+                noStroke();
+                if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
+                    fill(255, 100, 100, 200); // helleres Rot beim Hovern
+                } else {
+                    strokeWeight(2);
+                    stroke(250, 92, 148)
+                    fill(250,92,148); // rot
+                }
+                ellipse(x, y, circleSize2, circleSize2);
+
+                if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
+                    fill(100, 255, 100, 200); // helleres Grün beim Hovern
+                } else {
+                    strokeWeight(2);
+                    stroke(220, 245, 139)
+                    fill(220,245,139); // grün
+                }
+                ellipse(x, y, circleSize1, circleSize1);
             } else {
-                fill(255, 0, 0, 150); // rot
-            }
-            ellipse(x, y, circleSize2, circleSize2);
+                noStroke();
+                if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
+                    fill(100, 255, 100, 200); // helleres Grün beim Hovern
+                } else {
+                    fill(220,245,139); // grün
+                }
+                ellipse(x, y, circleSize1, circleSize1);
 
-            if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                fill(100, 255, 100, 200); // helleres Grün beim Hovern
-            } else {
-                fill(0, 255, 0, 150); // grün
+                if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
+                    fill(255, 100, 100, 200); // helleres Rot beim Hovern
+                } else {
+                    fill(250,92,148); // rot
+                }
+                ellipse(x, y, circleSize2, circleSize2);
             }
-            ellipse(x, y, circleSize1, circleSize1);
-        } else {
-            noStroke();
-            if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                fill(100, 255, 100, 200); // helleres Grün beim Hovern
-            } else {
-                fill(0, 255, 0, 150); // grün
-            }
-            ellipse(x, y, circleSize1, circleSize1);
-
-            if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                fill(255, 100, 100, 200); // helleres Rot beim Hovern
-            } else {
-                fill(255, 0, 0, 150); // rot
-            }
-            ellipse(x, y, circleSize2, circleSize2);
         }
     }
-}
     fill(200);
     textSize(12);
     text(frameRate().toFixed(2), 20, height - 30);
@@ -274,7 +280,7 @@ function mouseReleased() {
             }
         }
     }
-    
+
 }
 
 

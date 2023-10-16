@@ -14,8 +14,8 @@ class Country {
 
         this.overMe = false;
 
-        this.miColorNormal2 = color(255, 150, 100, 150);
-        this.miColorNormal = color(10, 150, 10, 150);
+        this.colorGreen = color(220,245,139);
+        this.colorRed = color(250,92,148);
         this.miColorOver = color(50);
         
         this.arrayOfpoints = [];
@@ -68,25 +68,20 @@ class Country {
 
 
     drawCountryGDP() {
-
-        this.isOverMe();
-
         for (let year = 0; year < this.arrayOfData.length; year++) {
             // if (this.arrayOfData[year].myCountryISO === "DEU") {
             if (this.overMe || this.selected) {
-                fill(this.miColorOver);
-                stroke(this.miColorOver);
+                // fill(this.miColorOver);
+                // stroke(this.miColorOver);
                 strokeWeight(3);
             } else {
-                fill(this.miColorNormal);
-                stroke(this.miColorNormal);
-                strokeWeight(1);
-                // text(year, 200)
-                
+                fill(this.colorRed);
+                stroke(this.colorRed);
+                strokeWeight(3);
             }
 
             ellipse(this.arrayOfpoints[year].x, this.arrayOfpoints[year].y, 3, 3);
-            stroke(this.miColorNormal);
+            stroke(this.colorRed);
             if (year > 0) line(this.arrayOfpoints[year - 1].x, this.arrayOfpoints[year - 1].y, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
 
             if (this.selected) {
@@ -94,12 +89,10 @@ class Country {
                 noStroke();
                 textSize(18);
                 text(this.myCode, this.arrayOfpoints[this.arrayOfData.length - 1].x + 5, this.arrayOfpoints[this.arrayOfData.length - 1].y);
-                fill(0);
-                noStroke();
-                text (2011 + year, this.arrayOfpoints[year].x - 15, baseLine + 20);
+
             } else {
                 textSize(12);
-                fill(200);
+                fill(100);
                 noStroke();
                 text (2011 + year, this.arrayOfpoints[year].x - 15, baseLine + 20);
                 text (80, this.xBorder - 30, baseLine);
@@ -107,6 +100,7 @@ class Country {
             }
 
         }
+        this.isOverMe();
 
     };
 
@@ -120,13 +114,13 @@ class Country {
                 stroke(this.miColorOver);
                 strokeWeight(3);
             } else {
-                fill(this.miColorNormal2);
-                stroke(this.miColorNormal2);
-                strokeWeight(1);
+                fill(this.colorGreen);
+                stroke(this.colorGreen);
+                strokeWeight(3);
             }
 
             ellipse(this.arrayOfpoints2[year2].x, this.arrayOfpoints2[year2].y, 3, 3);
-            stroke(this.miColorNormal2);
+            stroke(this.colorGreen);
             if (year2 > 0) line(this.arrayOfpoints2[year2 - 1].x, this.arrayOfpoints2[year2 - 1].y, this.arrayOfpoints2[year2].x, this.arrayOfpoints2[year2].y);
 
             if (this.selected) {
@@ -155,13 +149,18 @@ class Country {
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let distance = distances[year];
             if (distance < 300 && mouseY > 200 && mouseY < baseLine && mouseX > this.arrayOfpoints[year].x - this.stepX / 2 && mouseX < this.arrayOfpoints[year].x + this.stepX / 2) {
-                fill(50);
+                fill(250);
                 textSize(12);
-                text(this.arrayOfData[year] + "  INDEX", this.arrayOfpoints[year].x + 10, this.arrayOfpoints[year].y + 50);
+                text(this.arrayOfData[year].substring(0,5) + "  INDEX", this.arrayOfpoints[year].x + 10, this.arrayOfpoints[year].y + 50);
                 text(this.arrayOfData2[year] + "  INDEX", this.arrayOfpoints[year].x + 10, this.arrayOfpoints[year].y + 70);
                 strokeWeight(1.5);
                 stroke('orange');
                 line(this.arrayOfpoints[year].x, 200, this.arrayOfpoints[year].x, baseLine);
+                fill(255);
+                textSize(12);
+                noStroke();
+                text (2011 + year, this.arrayOfpoints[year].x - 15, baseLine + 20);
+
                 sliderValue = year;
                 ifAny = true;
             }
