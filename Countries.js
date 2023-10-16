@@ -146,6 +146,7 @@ class Country {
         }
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let distance = distances[year];
+            if(selectedCountry != 'HHH'){
             if (distance < 300 && mouseY > 200 && mouseY < baseLine && mouseX > this.arrayOfpoints[year].x - this.stepX / 2 && mouseX < this.arrayOfpoints[year].x + this.stepX / 2) {
                 
                 
@@ -164,7 +165,7 @@ class Country {
                 sliderValue = year;
                 ifAny = true;
             } else {cursor('default')}
-            }
+            }}
         
         this.overMe = ifAny;
     };
