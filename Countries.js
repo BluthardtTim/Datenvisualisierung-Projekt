@@ -14,8 +14,8 @@ class Country {
 
         this.overMe = false;
 
-        this.colorGreen = color(220,245,139);
-        this.colorRed = color(250,92,148);
+        this.colorRed = color(220,245,139);
+        this.colorGreen = color(250,92,148);
         this.miColorOver = color(50);
         
         this.arrayOfpoints = [];
