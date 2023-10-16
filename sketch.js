@@ -26,9 +26,9 @@ let dataArray = [];
 
 
 function preload() {
-    incomeData = loadTable('data2/EinkommenEu2.csv', 'csv', 'header');
-    consumData = loadTable('data2/konsumpreisindex_eu3.csv', 'csv', 'header');
-    karte = loadImage('europa_map_02.svg');
+    incomeData = loadTable('data2/EinkommenEu3.csv', 'csv', 'header');
+    consumData = loadTable('data2/konsumpreisindex_eu4-exp.csv', 'csv', 'header');
+    karte = loadImage('europa_map_03.svg');
     coordinates = loadTable('data2/Koordinaten.csv', 'csv', 'header')
 }
 
@@ -149,7 +149,7 @@ function draw() {
 
 
     noStroke()
-    fill(255, 0, 0, 10);
+    fill(255, 0, 0, 0);
     beginShape();
     for (let i = 0; i < country1.arrayOfpoints.length; i++) {
         // if (country1.arrayOfpoints[i].y < country2.arrayOfpoints2[i].y) {
