@@ -4,6 +4,9 @@ let baseLine = 0;
 
 let data = [];
 
+let distance1
+let circleSize1
+
 
 let consumData;
 let myConsum = [];
@@ -13,7 +16,7 @@ let karte;
 
 let sliderValue = 0;
 
-let selectedCountry = "platzhalter";
+let selectedCountry = `platzhalter`;
 let xBorder = 100;
 
 let currentYear;
@@ -214,9 +217,10 @@ function draw() {
                 strokeWeight(2);
                 stroke(200)
                 fill(100); 
+                ellipse(x, y, circleSize2, circleSize2);
 
-
-            if (circleSize1 < circleSize2) {
+            }
+            else {if (circleSize1 < circleSize2) {
                 noStroke();
                 if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
                     fill(250, 92, 148, 255); // helleres Rot beim Hovern
@@ -320,34 +324,26 @@ function mouseReleased() {
     for (let i = 0; i < myIncome.length; i++) {
         let country = myIncome[i];
         let countryData = getCountryData(country.myCountryISO);
-
         if (countryData) {
             let x = karteX + windowHeight * countryData.obj.X; // X-Koordinate des Landes
             let y = windowHeight * countryData.obj.Y; // Y-Koordinate des Landes
-
             let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
             let value2 = myConsum[i].arrayOfData2[sliderValue]; // Wert aus dem Datenarray des Verbrauchs
-
             let circleSize1 = map(value1, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 1
             let circleSize2 = map(value2, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 2
-
             let distance1 = dist(mouseX, mouseY, x, y);
             let distance2 = dist(mouseX, mouseY, x, y);
-
-
+            console.log(countryData.obj.Name)
+            text(countryData.obj.Name, 200, 200);
             if (distance2 < circleSize2) {
                 selectedCountry = country.myCountryISO;
-                console.log("Selected Country ISO: " + selectedCountry);
+                //console.log(“Selected Country ISO: ” + selectedCountry);
             }
         } else {
             if (distance1 < circleSize1) {
                 selectedCountry = country.myCountryISO;
-                console.log("Selected Country ISO: " + selectedCountry);
-
+                //console.log(“Selected Country ISO: ” + selectedCountry);
             }
         }
     }
-
 }
-
-
