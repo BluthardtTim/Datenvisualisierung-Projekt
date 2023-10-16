@@ -103,7 +103,7 @@ function draw() {
     background(backgroundColor);
     // sliderValue = slider.value();
 
-    frameRate(20);
+    // frameRate(20);
     if (myButton.selected && frameCount % 10 === 0) {
         if (sliderValue < 11) { sliderValue++; console.log(sliderValue); }
         else sliderValue = 0;
@@ -183,16 +183,15 @@ function draw() {
 
         if (countryData) {
             let x = karteX+20+windowHeight * countryData.obj.X; // X-Koordinate des Landes
-
-
             let y = windowHeight * countryData.obj.Y; // Y-Koordinate des Landes
 
             let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
             let value2 = myConsum[i].arrayOfData2[sliderValue]; // Wert aus dem Datenarray des Verbrauchs
 
-            let circleSize1 = map(value1, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 1
-            let circleSize2 = map(value2, 80, 150, 10, 100); // Größe der Ellipse basierend auf Wert 2
+            let circleSize1 = map(value1, 70, 400, 10, 300); // Größe der Ellipse basierend auf Wert 1
+            let circleSize2 = map(value2, 70, 400, 10, 300); // Größe der Ellipse basierend auf Wert 2
 
+        
             if (circleSize1 < circleSize2) {
                 noStroke();
                 if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
@@ -273,16 +272,16 @@ function mouseReleased() {
             let distance1 = dist(mouseX, mouseY, x, y);
             let distance2 = dist(mouseX, mouseY, x, y);
 
-            if (circleSize1 < circleSize2) {
-                if (distance2 < circleSize2 / 2) {
+           
+                if (distance2 < circleSize2) {
                     selectedCountry = country.myCountryISO;
                     console.log("Selected Country ISO: " + selectedCountry);
                 }
             } else {
-                if (distance1 < circleSize1 / 2) {
+                if (distance1 < circleSize1) {
                     selectedCountry = country.myCountryISO;
                     console.log("Selected Country ISO: " + selectedCountry);
-                }
+                
             }
         }
     }
