@@ -113,7 +113,7 @@ function draw() {
     fill(255);
 
     noStroke();
-    text('Jahr: ' + ( 2011 + sliderValue), windowWidth / 2 + 150, height - 40);
+    text('Jahr: ' + ( 2011 + sliderValue),xBorder, baseLine + 100);
 
     // Karte
     karteX = windowWidth / 2 - 200;
@@ -198,7 +198,7 @@ function draw() {
                 } else {
                     strokeWeight(2);
                     stroke(250, 92, 148)
-                    fill(250,92,148); // rot
+                    fill(250,92,148, 180); // rot
                 }
                 ellipse(x, y, circleSize2, circleSize2);
 
@@ -207,7 +207,7 @@ function draw() {
                 } else {
                     strokeWeight(2);
                     stroke(220, 245, 139)
-                    fill(220,245,139); // grün
+                    fill(220,245,139, 180); // grün
                 }
                 ellipse(x, y, circleSize1, circleSize1);
             } else {
@@ -215,14 +215,18 @@ function draw() {
                 if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
                     fill(100, 255, 100, 200); // helleres Grün beim Hovern
                 } else {
-                    fill(220,245,139); // grün
+                    strokeWeight(2);
+                    stroke(220, 245, 139)
+                    fill(220,245,139, 180); // grün
                 }
                 ellipse(x, y, circleSize1, circleSize1);
 
                 if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
                     fill(255, 100, 100, 200); // helleres Rot beim Hovern
                 } else {
-                    fill(250,92,148); // rot
+                    strokeWeight(2);
+                    stroke(250, 92, 148)
+                    fill(250,92,148, 180); // rot
                 }
                 ellipse(x, y, circleSize2, circleSize2);
             }
@@ -230,7 +234,7 @@ function draw() {
     }
     fill(200);
     textSize(12);
-    text(frameRate().toFixed(2), 20, height - 30);
+    // text(frameRate().toFixed(2), 20, height - 30);
 
 }
 

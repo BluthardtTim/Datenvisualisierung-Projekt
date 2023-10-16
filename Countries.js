@@ -40,9 +40,6 @@ class Country {
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let secX = this.xBorder + (year) * this.stepX;
             let secY = map(this.arrayOfData[year], 80, 150, lineaBase, 100);
-            // console.log(this.arrayOfData[year])
-
-
             let currentPoint = createVector(secX, secY);
             this.arrayOfpoints.push(currentPoint);
         }
@@ -73,11 +70,11 @@ class Country {
             if (this.overMe || this.selected) {
                 // fill(this.miColorOver);
                 // stroke(this.miColorOver);
-                strokeWeight(3);
+                strokeWeight(2);
             } else {
                 fill(this.colorRed);
                 stroke(this.colorRed);
-                strokeWeight(3);
+                strokeWeight(2);
             }
 
             ellipse(this.arrayOfpoints[year].x, this.arrayOfpoints[year].y, 3, 3);
@@ -112,11 +109,11 @@ class Country {
             if (this.overMe2 || this.selected) {
                 fill(this.miColorOver);
                 stroke(this.miColorOver);
-                strokeWeight(3);
+                strokeWeight(2);
             } else {
                 fill(this.colorGreen);
                 stroke(this.colorGreen);
-                strokeWeight(3);
+                strokeWeight(2);
             }
 
             ellipse(this.arrayOfpoints2[year2].x, this.arrayOfpoints2[year2].y, 3, 3);
@@ -145,10 +142,10 @@ class Country {
             let distance = dist(mouseX, mouseY, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
             distances.push(distance);
         }
-
         for (let year = 0; year < this.arrayOfData.length; year++) {
             let distance = distances[year];
             if (distance < 300 && mouseY > 200 && mouseY < baseLine && mouseX > this.arrayOfpoints[year].x - this.stepX / 2 && mouseX < this.arrayOfpoints[year].x + this.stepX / 2) {
+                
                 fill(250);
                 textSize(12);
                 text(this.arrayOfData[year].substring(0,5) + "  INDEX", this.arrayOfpoints[year].x + 10, this.arrayOfpoints[year].y + 50);
@@ -163,8 +160,8 @@ class Country {
 
                 sliderValue = year;
                 ifAny = true;
+            } else {cursor('default')}
             }
-        }
         
         this.overMe = ifAny;
     };
