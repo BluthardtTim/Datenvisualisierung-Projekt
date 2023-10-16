@@ -13,7 +13,7 @@ let karte;
 
 let sliderValue = 0;
 
-let selectedCountry = "DEU";
+let selectedCountry = "platzhalter";
 let xBorder = 100;
 
 let currentYear;
@@ -93,6 +93,7 @@ function setup() {
         myConsum[country].calculatePoints2(baseLine);
     }
 
+
     myButton = new Button(40, 70, 20, "Abspielen");
 }
 
@@ -110,7 +111,11 @@ function draw() {
         else sliderValue = 0;
     }
 
+    if(selectedCountry != 'platzhalter'){
     myButton.display();
+
+    }
+
     fill(255);
 
     noStroke();
@@ -124,9 +129,12 @@ function draw() {
     stroke(255)
 
 
+    if(selectedCountry != 'platzhalter'){
     // Zeichne X- und Y-Achsen
     line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
     line(xBorder, baseLine, xBorder, 200); // X-Achse
+
+    }
 
 
 
@@ -143,9 +151,18 @@ function draw() {
     for (let country = 0; country < myConsum.length; country++) {
         if (myConsum[country].myCountryISO === selectedCountry) {
             myConsum[country].drawCountryGDP2();
+            fill(255)
+            noStroke();
+            if(selectedCountry != 'platzhalter'){
+            text(myConsum[country].myCountryISO, xBorder + 20, 250);
+
+            }
             country2 = myConsum[country];
         }
     }
+
+    // console.log(myConsum[country].myCountryISO)
+    // text(myConsum[country].myCountryISO,xBorder + 20 , 250);
 
 
 
@@ -197,48 +214,47 @@ function draw() {
                 strokeWeight(2);
                 stroke(200)
                 fill(100); 
+
+
+            if (circleSize1 < circleSize2) {
+                noStroke();
+                if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
+                    fill(250, 92, 148, 255); // helleres Rot beim Hovern
+                } else {
+                    strokeWeight(2);
+                    stroke(250, 92, 148)
+                    fill(250, 92, 148, 180); // rot
+                }
+                ellipse(x, y, circleSize2, circleSize2);
+
+                if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
+                    fill(220, 245, 139, 255); // helleres Grün beim Hovern
+                } else {
+                    strokeWeight(2);
+                    stroke(220, 245, 139)
+                    fill(220, 245, 139, 180); // grün
+                }
+                ellipse(x, y, circleSize1, circleSize1);
+            } else {
+                noStroke();
+                if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
+                    fill(220, 245, 139, 255); // helleres Grün beim Hovern
+                } else {
+                    strokeWeight(2);
+                    stroke(220, 245, 139)
+                    fill(220, 245, 139, 180); // grün
+                }
+
                 ellipse(x, y, circleSize1, circleSize1);
             }
 
-            else {
-                if (circleSize1 < circleSize2) {
-                    noStroke();
-                    if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                        fill(250, 92, 148, 255); // helleres Rot beim Hovern
-                    } else {
-                        strokeWeight(2);
-                        stroke(250, 92, 148)
-                        fill(250, 92, 148, 180); // rot
-                    }
-                    ellipse(x, y, circleSize2, circleSize2);
-
-                    if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                        fill(220, 245, 139, 255); // helleres Grün beim Hovern
-                    } else {
-                        strokeWeight(2);
-                        stroke(220, 245, 139)
-                        fill(220, 245, 139, 180); // grün
-                    }
-                    ellipse(x, y, circleSize1, circleSize1);
+                if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
+                    fill(250, 92, 148, 255); // helleres Rot beim Hovern
                 } else {
-                    noStroke();
-                    if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                        fill(220, 245, 139, 255); // helleres Grün beim Hovern
-                    } else {
-                        strokeWeight(2);
-                        stroke(220, 245, 139)
-                        fill(220, 245, 139, 180); // grün
-                    }
-                    ellipse(x, y, circleSize1, circleSize1);
+                    strokeWeight(2);
+                    stroke(250, 92, 148)
+                    fill(250, 92, 148, 180); // rot
 
-                    if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                        fill(250, 92, 148, 255); // helleres Rot beim Hovern
-                    } else {
-                        strokeWeight(2);
-                        stroke(250, 92, 148)
-                        fill(250, 92, 148, 180); // rot
-                    }
-                    ellipse(x, y, circleSize2, circleSize2);
                 }
 
 
@@ -253,6 +269,33 @@ function draw() {
     textSize(12);
     // text(frameRate().toFixed(2), 20, height - 30);
 
+    // Starttext nach (Re-)load
+    let textHead = "Einkommen\n" +
+                    "vs. Verbraucherpreise"
+    let textSubhead = "How is the standard of living in the EU?"
+    let textIntro = "Platzhaltertext\n"
+    let textInteract = "For more information interact with the map..."
+    let textNamen = "Tim Bluthardt, Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer"
+
+    if (selectedCountry === "platzhalter") {
+        fill(255);
+        //header
+        textSize(50);
+        text(textHead, 50, 100);
+        //Subheader
+        textSize(18);
+        text(textSubhead, 50, 250);
+        //intro
+        textSize(12);
+        text(textIntro, 50, 300)
+        //zur Interaktion auffordern
+        textSize(18);
+        text(textInteract, 50, 500)
+        //footer
+        textSize(12);
+        text(textNamen, 50, height - 50);
+    }
+
 }
 
 
@@ -260,10 +303,13 @@ function getCountryData(iso) {
     for (let i = 0; i < coordinates.getRowCount(); i++) {
         let isoCode = coordinates.getString(i, 'ISO');
         if (isoCode === iso) {
+            let Name = coordinates.getString(i, 'Name');
             let x = coordinates.getNum(i, 'X');
             let y = coordinates.getNum(i, 'Y');
-            return { obj: { X: x, Y: y } };
+            return { obj: { X: x, Y: y, Name: Name } };
         }
+        noStroke();
+        fill(255);
     }
     return null;
 }
