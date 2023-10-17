@@ -23,7 +23,7 @@ let myButton;
 
 
 let backgroundColor = 30;
-
+let playbuttonVisible = true;
 // Erstellen Sie ein leeres Array, um die Jahre und Werte zu speichern
 let dataArray = [];
 
@@ -98,8 +98,8 @@ function setup() {
     }
 
     
-    myButton = new Button(xBorder, height - 75, 20, "Abspielen");
-    //myButton = playbutton;
+    myButton = new Button(xBorder, height - 105, 55, "Abspielen");
+
 }
 
 
@@ -314,18 +314,14 @@ function draw() {
             text("2015 = 100", xBorder + 265, baseLine + 56);
 
             //playbutton
-            // imageMode(CENTER);
-            // let xButton = height - 100;
-            // image(playbutton,xBorder, xButton, 42, 42);
-            // text("play", xBorder + 20, xButton);
-
-            //alter playbutton
             if(selectedCountry != 'platzhalter'){
                 myButton.display();
                 }
-
-            //pausebutton
-            // image(pausebutton,xBorder, xButton, 42, 42);
+            
+                if (playbuttonVisible) {
+                    image(playbutton, xBorder, height - 100, 42, 42);
+                }
+        
     }
 
 
