@@ -149,7 +149,7 @@ function draw() {
 
     for (let country = 0; country < myConsum.length; country++) {
         if (myConsum[country].myCountryISO === selectedCountry) {
-            console.log(myConsum[country].LaenderName)
+            // console.log(myConsum[country].LaenderName)
             myConsum[country].drawCountryGDP2();
             fill(255)
             noStroke();
@@ -311,7 +311,7 @@ function draw() {
             textSize(12);
             text("ø income", xBorder + 30, baseLine + 55 );
             text("ø consumer prices", xBorder + 140, baseLine + 55);
-            text("2015 = 100", xBorder + 265, baseLine + 56);
+            text("2015 = 100", xBorder + 265, baseLine + 56)
 
             //playbutton
             // imageMode(CENTER);
@@ -370,7 +370,7 @@ function mouseReleased() {
             // console.log(countryData.obj.Name)
             // text(countryData.obj.Name, 200, 200); 
 
-            LaenderName = country.countryData;
+            LaenderName = countryData.obj;
             console.log(LaenderName);
 
             if (distance2 < circleSize2) {
