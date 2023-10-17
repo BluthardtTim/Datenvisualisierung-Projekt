@@ -31,7 +31,7 @@ let dataArray = [];
 function preload() {
     incomeData = loadTable('data2/EinkommenEu3.csv', 'csv', 'header');
     consumData = loadTable('data2/konsumpreisindex_eu4-exp.csv', 'csv', 'header');
-    karte = loadImage('europa_map_03.svg');
+    karte = loadImage('karte.png');
     coordinates = loadTable('data2/Koordinaten.csv', 'csv', 'header')
     playbutton = loadImage('playbutton.svg');
     pausebutton = loadImage('pausebutton.svg');
@@ -357,7 +357,7 @@ function mouseReleased() {
         let countryData = getCountryData(country.myCountryISO);
 
         if (countryData) {
-            let x = karteX + windowHeight * countryData.obj.X; // X-Koordinate des Landes
+            let x = karteX+ 20 + windowHeight * countryData.obj.X; // X-Koordinate des Landes
             let y = windowHeight * countryData.obj.Y; // Y-Koordinate des Landes
 
             let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
