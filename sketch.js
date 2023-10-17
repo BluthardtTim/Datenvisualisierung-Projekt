@@ -263,9 +263,9 @@ function draw() {
     // text(frameRate().toFixed(2), 20, height - 30);
 
     // Starttext nach (Re-)load
-    let textHead = "Einkommen\n" +
-                    "vs. Verbraucherpreise"
-    let textSubhead = "How is the standard of living in the EU?"
+    let textHead = "Tackling Inflation:" 
+    let textSubhead = "The Battle Between Earnings and Consumer Expenses" 
+                        // "How is the standard of living in the Europe?"
     let textIntro = "Events and factors point to significant changes in the economy. One challenge arising\n"
                     + "from this recent economic situation is a sharp increase in the cost of living.\n"
                     + "This raises the question: How much does this economic shift truly affect our standard of living in Europe?\n"
@@ -282,8 +282,8 @@ function draw() {
         textSize(50);
         text(textHead, xBorder, 100);
         //Subheader
-        textSize(18);
-        text(textSubhead, xBorder, 250);
+        textSize(24);
+        text(textSubhead, xBorder, 200);
         //intro
         textSize(12);
         text(textIntro, xBorder, 300)
