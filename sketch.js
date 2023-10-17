@@ -158,7 +158,7 @@ function draw() {
                 noStroke();
                 if (selectedCountry != 'platzhalter') {
                     textSize(18)
-                    text(countryName, xBorder + 20, 300); // Den vollständigen Ländernamen anstelle von myCountryISO anzeigen
+                    text(countryName, xBorder + 20, baseLine - 450); 
                 }
             }
             country2 = myConsum[country];
