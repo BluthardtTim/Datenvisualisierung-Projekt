@@ -64,7 +64,7 @@ class Button {
             playbuttonVisible = false;
             // this.pausebuttonVisible = true;
         // pause button svg einfügen
-            image(this.pausebutton,xBorder, height - 100, 42, 42);
+            image(this.pausebutton,xBorder, height - 100, 20, 20);
 
             // if(this.mouseOverMe) {
             // image(this.pausebuttonHover,xBorder + 5, height - 100, 42, 42) 

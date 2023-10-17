@@ -98,7 +98,7 @@ function setup() {
     }
 
     
-    myButton = new Button(xBorder, height - 105, 55, "Abspielen");
+    myButton = new Button(xBorder - 2, height - 105, 30, "Abspielen");
 
 
 }
@@ -158,7 +158,7 @@ function draw() {
                 noStroke();
                 if (selectedCountry != 'platzhalter') {
                     textSize(18)
-                    text(countryName, xBorder + 20, baseLine - 450); 
+                    text(countryName, xBorder + 20, height / 3); 
                 }
             }
             country2 = myConsum[country];
@@ -325,7 +325,7 @@ function draw() {
                 }
             
                 if (playbuttonVisible) {
-                    image(playbutton, xBorder, height - 100, 42, 42);
+                    image(playbutton, xBorder, height - 100, 20, 20);
                 }
     
     }
