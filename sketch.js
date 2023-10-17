@@ -208,6 +208,7 @@ function draw() {
             let circleSize1 = map(value1, 70, 400, 10, 300); // Größe der Ellipse basierend auf Wert 1
             let circleSize2 = map(value2, 70, 400, 10, 300); // Größe der Ellipse basierend auf Wert 2
 
+
             if (sliderValue == 4) {
                 strokeWeight(2);
                 stroke(200)
@@ -255,6 +256,18 @@ function draw() {
                     }
                     ellipse(x, y, circleSize2, circleSize2);
                 }
+            }
+
+            if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
+                fill(255);
+                noStroke();
+                textSize(12);
+                text(countryData.obj.Name, x + 30, y); // Anzeigen des Ländernamens bei Hover
+            } else if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
+                fill(255);
+                noStroke();
+                textSize(12);
+                text(countryData.obj.Name, x + 30, y); // Anzeigen des Ländernamens bei Hover
             }
         }
     }
