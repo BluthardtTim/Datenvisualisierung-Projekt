@@ -68,28 +68,14 @@ class Country {
 
         for (let year = 0; year < this.arrayOfData.length; year++) {
             // if (this.arrayOfData[year].myCountryISO === "DEU") {
-            if (this.overMe || this.selected) {
-                fill(this.miColorOver);
-                stroke(this.miColorOver);
-                strokeWeight(2);
-            } else {
+            
                 fill(this.colorRed);
                 stroke(this.colorRed);
                 strokeWeight(2);
-            }
 
             if(selectedCountry != 'platzhalter'){
-            // ellipse(this.arrayOfpoints[year].x, this.arrayOfpoints[year].y, 3, 3);
-            stroke(this.colorRed);
             if (year > 0) line(this.arrayOfpoints[year - 1].x, this.arrayOfpoints[year - 1].y, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
 
-            if (this.selected) {
-                fill(200);
-                noStroke();
-                textSize(18);
-                text(this.myCode, this.arrayOfpoints[this.arrayOfData.length - 1].x + 5, this.arrayOfpoints[this.arrayOfData.length - 1].y);
-
-            } else {
                 textSize(12);
                 fill(150);
                 noStroke();
@@ -105,7 +91,7 @@ class Country {
                 line(xBorder, (this.arrayOfpoints[4].y + baseLine)/2, windowWidth / 2 - 100, (this.arrayOfpoints[4].y + baseLine)/2)               
                 line(xBorder, this.arrayOfpoints[4].y - ((this.arrayOfpoints[4].y + baseLine)/2 - this.arrayOfpoints[4].y), windowWidth / 2 - 100, this.arrayOfpoints[4].y - ((this.arrayOfpoints[4].y + baseLine)/2 - this.arrayOfpoints[4].y))
                 line(xBorder, this.arrayOfpoints[4].y - (baseLine - this.arrayOfpoints[4].y), windowWidth / 2 - 100, this.arrayOfpoints[4].y - (baseLine - this.arrayOfpoints[4].y))
-            }}
+            }
 
         }
         this.isOverMe();
@@ -117,15 +103,10 @@ class Country {
         this.isOverMe2();
 
         for (let year2 = 0; year2 < this.arrayOfData2.length; year2++) {
-            if (this.overMe2 || this.selected) {
-                fill(this.miColorOver);
-                stroke(this.miColorOver);
-                strokeWeight(2);
-            } else {
                 fill(this.colorGreen);
                 stroke(this.colorGreen);
                 strokeWeight(2);
-            }
+            
 
             if(selectedCountry != 'platzhalter'){
             // ellipse(this.arrayOfpoints2[year2].x, this.arrayOfpoints2[year2].y, 3, 3);
@@ -138,9 +119,7 @@ class Country {
                 textSize(18);
                 text(this.myCode, this.arrayOfpoints2[this.arrayOfData2.length - 1].x + 5, this.arrayOfpoints2[this.arrayOfData2.length - 1].y);
             }}
-
         }
-
     };
 
     

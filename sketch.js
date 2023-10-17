@@ -150,6 +150,7 @@ function draw() {
 
     for (let country = 0; country < myConsum.length; country++) {
         if (myConsum[country].myCountryISO === selectedCountry) {
+            console.log(myConsum[country].LaenderName)
             myConsum[country].drawCountryGDP2();
             fill(255)
             noStroke();
@@ -159,9 +160,6 @@ function draw() {
             country2 = myConsum[country];
         }
     }
-
-    // console.log(myConsum[country].myCountryISO)
-    // text(myConsum[country].myCountryISO,xBorder + 20 , 250);
 
 
 
@@ -190,8 +188,6 @@ function draw() {
 
     textSize(18);
     textSize(12);
-    // text ("2015 = 100", 220, baseLine - 150);
-
 
     // Draw circles for each country
     for (let i = 0; i < myIncome.length; i++) {
@@ -209,12 +205,10 @@ function draw() {
             let circleSize2 = map(value2, 70, 400, 10, 300); // Größe der Ellipse basierend auf Wert 2
 
             if (sliderValue == 4) {
-
                 strokeWeight(2);
                 stroke(200)
                 fill(100); 
                 ellipse(x, y, circleSize2, circleSize2);
-
             }
             else {
 
@@ -317,10 +311,6 @@ function draw() {
             text("ø income", xBorder + 30, baseLine + 55 );
             text("ø consumer prices", xBorder + 140, baseLine + 55);
             text("2015 = 100", xBorder + 265, baseLine + 56)
-
-
-
-
     }
 
 
@@ -342,7 +332,7 @@ function getCountryData(iso) {
     return null;
 }
 
-
+let LaenderName;
 function mouseReleased() {
     myButton.releasedOverMe();
     for (let i = 0; i < myIncome.length; i++) {
@@ -363,7 +353,10 @@ function mouseReleased() {
             let distance2 = dist(mouseX, mouseY, x, y);
 
             // console.log(countryData.obj.Name)
-            text(countryData.obj.Name, 200, 200); 
+            // text(countryData.obj.Name, 200, 200); 
+
+            LaenderName = country.countryData;
+            console.log(LaenderName);
 
             if (distance2 < circleSize2) {
                 selectedCountry = country.myCountryISO;
