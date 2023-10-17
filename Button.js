@@ -16,11 +16,15 @@ class Button {
         this.myStrokeColor = color(0);
         this.mouseOverMe = false;
         this.selected = false;
+        // this.xButton = height - 100;
         this.myTextSize = 18;
     }
 
     display () {
 
+        //Playbutton svg einfügen
+        //let xButton = height - 100;
+        // image(playbutton,xBorder, xButton, 42, 42);
         fill(255,0,0);
         //ellipse (this.myX, this.myY, 5,5);
 
@@ -45,6 +49,8 @@ class Button {
             noFill();
             stroke(this.myStrokeColor);
             rect(this.myX, this.myY, this.mySize, this.mySize);
+            // image(pausebutton,xBorder, xButton, 42, 42);
+
         }
     }
 

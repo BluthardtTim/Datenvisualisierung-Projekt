@@ -34,6 +34,7 @@ function preload() {
     karte = loadImage('europa_map_03.svg');
     coordinates = loadTable('data2/Koordinaten.csv', 'csv', 'header')
     playbutton = loadImage('playbutton.svg');
+    pausebutton = loadImage('pausebutton.svg');
 }
 
 function setup() {
@@ -98,6 +99,7 @@ function setup() {
 
     
     myButton = new Button(xBorder, height - 75, 20, "Abspielen");
+    //myButton = playbutton;
 }
 
 
@@ -319,13 +321,17 @@ function draw() {
 
             //playbutton
             // imageMode(CENTER);
-            // image(playbutton,xBorder, height - 70, 32, 32);
-            // text("play", xBorder + 80, height - 70);
+            // let xButton = height - 100;
+            // image(playbutton,xBorder, xButton, 42, 42);
+            // text("play", xBorder + 20, xButton);
 
             //alter playbutton
-            // if(selectedCountry != 'platzhalter'){
-            //     myButton.display();
-            //     }
+            if(selectedCountry != 'platzhalter'){
+                myButton.display();
+                }
+
+            //pausebutton
+            // image(pausebutton,xBorder, xButton, 42, 42);
 
     }
 
