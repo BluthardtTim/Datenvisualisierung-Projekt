@@ -268,9 +268,13 @@ function draw() {
     let textHead = "Einkommen\n" +
                     "vs. Verbraucherpreise"
     let textSubhead = "How is the standard of living in the EU?"
-    let textIntro = "Platzhaltertext\n"
+    let textIntro = "Events and factors point to significant changes in the economy.\n"
+                    + "One challenge arising from this recent economic situation is a sharp increase in the cost of living. This raises the question: How much does this economic shift truly affect our standard of living in Europe?\n"
+                    + "The answer is complex. However, a key aspect is the income development in relation to cost increases.\n"
+                    + "Are some European countries successfully countering the rising costs by adequately increasing salaries, thus ensuring the current standard of living?"
     let textInteract = "For more information interact with the map..."
     let textNamen = "Tim Bluthardt, Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer"
+
 
     if (selectedCountry === "platzhalter") {
         fill(255);
