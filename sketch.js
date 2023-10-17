@@ -355,7 +355,7 @@ function mouseReleased() {
         let countryData = getCountryData(country.myCountryISO);
 
         if (countryData) {
-            let x = karteX + windowHeight * countryData.obj.X; // X-Koordinate des Landes
+            let x = karteX + 20 + windowHeight * countryData.obj.X; // X-Koordinate des Landes
             let y = windowHeight * countryData.obj.Y; // Y-Koordinate des Landes
 
             let value1 = country.arrayOfData[sliderValue]; // Wert aus dem Datenarray des Einkommens
@@ -373,13 +373,7 @@ function mouseReleased() {
             LaenderName = countryData.obj;
             console.log(LaenderName);
 
-            if (distance2 < circleSize2) {
-                selectedCountry = country.myCountryISO;
-                console.log("Selected Country ISO: " + selectedCountry);
-
-            }
-        } else {
-            if (distance1 < circleSize1) {
+            if (distance2 < (circleSize2/2)|| distance1 < (circleSize1/2)) {
                 selectedCountry = country.myCountryISO;
                 console.log("Selected Country ISO: " + selectedCountry);
 
