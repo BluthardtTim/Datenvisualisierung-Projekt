@@ -31,7 +31,7 @@ let dataArray = [];
 function preload() {
     incomeData = loadTable('data2/EinkommenEu3.csv', 'csv', 'header');
     consumData = loadTable('data2/konsumpreisindex_eu4-exp.csv', 'csv', 'header');
-    karte = loadImage('europa_map_03.svg');
+    karte = loadImage('europa_map_02.png');
     coordinates = loadTable('data2/Koordinaten.csv', 'csv', 'header')
     playbutton = loadImage('playbutton.svg');
     pausebutton = loadImage('pausebutton.svg');
@@ -136,10 +136,10 @@ function draw() {
     }
 
 
-
     let country1;
     let country2;
 
+    
     for (let country = 0; country < myIncome.length; country++) {
         if (myIncome[country].myCountryISO === selectedCountry) {
             myIncome[country].drawCountryGDP();
@@ -149,16 +149,21 @@ function draw() {
 
     for (let country = 0; country < myConsum.length; country++) {
         if (myConsum[country].myCountryISO === selectedCountry) {
-            // console.log(myConsum[country].LaenderName)
-            myConsum[country].drawCountryGDP2();
-            fill(255)
-            noStroke();
-            if(selectedCountry != 'platzhalter'){
-            text(myConsum[country].myCountryISO, xBorder + 20, 250);
+            let countryData = getCountryData(myConsum[country].myCountryISO); // Länderdaten abrufen
+            if (countryData) {
+                let countryName = countryData.obj.Name; // Vollständiger Ländername aus den Länderdaten abrufen
+                myConsum[country].drawCountryGDP2();
+                fill(255);
+                noStroke();
+                if (selectedCountry != 'platzhalter') {
+                    textSize(18)
+                    text(countryName, xBorder + 20, 300); // Den vollständigen Ländernamen anstelle von myCountryISO anzeigen
+                }
             }
             country2 = myConsum[country];
         }
     }
+    
 
 
 
@@ -336,10 +341,10 @@ function getCountryData(iso) {
     for (let i = 0; i < coordinates.getRowCount(); i++) {
         let isoCode = coordinates.getString(i, 'ISO');
         if (isoCode === iso) {
-            let Name = coordinates.getString(i, 'Name');
+            let countryName = coordinates.getString(i, 'Name'); // Vollständiger Name des Landes aus der CSV-Datei abrufen
             let x = coordinates.getNum(i, 'X');
             let y = coordinates.getNum(i, 'Y');
-            return { obj: { X: x, Y: y, Name: Name } };
+            return { obj: { X: x, Y: y, Name: countryName, Iso: iso } }; // Verwenden Sie countryName, um den vollständigen Ländernamen zu speichern
         }
         noStroke();
         fill(255);
@@ -347,7 +352,6 @@ function getCountryData(iso) {
     return null;
 }
 
-let LaenderName;
 function mouseReleased() {
     myButton.releasedOverMe();
     for (let i = 0; i < myIncome.length; i++) {
@@ -366,13 +370,8 @@ function mouseReleased() {
 
             let distance1 = dist(mouseX, mouseY, x, y);
             let distance2 = dist(mouseX, mouseY, x, y);
-
-            // console.log(countryData.obj.Name)
-            // text(countryData.obj.Name, 200, 200); 
-
-            LaenderName = countryData.obj;
-            console.log(LaenderName);
-
+            
+            
             if (distance2 < (circleSize2/2)|| distance1 < (circleSize1/2)) {
                 selectedCountry = country.myCountryISO;
                 console.log("Selected Country ISO: " + selectedCountry);

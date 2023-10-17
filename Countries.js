@@ -69,35 +69,34 @@ class Country {
         for (let year = 0; year < this.arrayOfData.length; year++) {
             // if (this.arrayOfData[year].myCountryISO === "DEU") {
             
+                
+                if(selectedCountry != 'platzhalter'){
+                    if (year > 0) line(this.arrayOfpoints[year - 1].x, this.arrayOfpoints[year - 1].y, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
+                    
+                    textSize(12);
+                    fill(150);
+                    noStroke();
+                    text (2011 + year, this.arrayOfpoints[year].x - 15, baseLine + 20);
+                    text (80, this.xBorder - 30, baseLine);
+                    text (90, this.xBorder - 30, (this.arrayOfpoints[4].y + baseLine)/2 );
+                    text (100, this.xBorder - 30, this.arrayOfpoints[4].y);
+                    text (110, this.xBorder - 30, this.arrayOfpoints[4].y - ((this.arrayOfpoints[4].y + baseLine)/2 - this.arrayOfpoints[4].y));
+                    text (120, this.xBorder - 30, this.arrayOfpoints[4].y - (baseLine - this.arrayOfpoints[4].y));
+                    strokeWeight(0.5);
+                    stroke(70);
+                    line(xBorder, this.arrayOfpoints[4].y, windowWidth / 2 - 100, this.arrayOfpoints[4].y)   
+                    line(xBorder, (this.arrayOfpoints[4].y + baseLine)/2, windowWidth / 2 - 100, (this.arrayOfpoints[4].y + baseLine)/2)               
+                    line(xBorder, this.arrayOfpoints[4].y - ((this.arrayOfpoints[4].y + baseLine)/2 - this.arrayOfpoints[4].y), windowWidth / 2 - 100, this.arrayOfpoints[4].y - ((this.arrayOfpoints[4].y + baseLine)/2 - this.arrayOfpoints[4].y))
+                    line(xBorder, this.arrayOfpoints[4].y - (baseLine - this.arrayOfpoints[4].y), windowWidth / 2 - 100, this.arrayOfpoints[4].y - (baseLine - this.arrayOfpoints[4].y))
+                }
+                
                 fill(this.colorRed);
                 stroke(this.colorRed);
                 strokeWeight(2);
-
-            if(selectedCountry != 'platzhalter'){
-            if (year > 0) line(this.arrayOfpoints[year - 1].x, this.arrayOfpoints[year - 1].y, this.arrayOfpoints[year].x, this.arrayOfpoints[year].y);
-
-                textSize(12);
-                fill(150);
-                noStroke();
-                text (2011 + year, this.arrayOfpoints[year].x - 15, baseLine + 20);
-                text (80, this.xBorder - 30, baseLine);
-                text (90, this.xBorder - 30, (this.arrayOfpoints[4].y + baseLine)/2 );
-                text (100, this.xBorder - 30, this.arrayOfpoints[4].y);
-                text (110, this.xBorder - 30, this.arrayOfpoints[4].y - ((this.arrayOfpoints[4].y + baseLine)/2 - this.arrayOfpoints[4].y));
-                text (120, this.xBorder - 30, this.arrayOfpoints[4].y - (baseLine - this.arrayOfpoints[4].y));
-                strokeWeight(0.5);
-                stroke(70);
-                line(xBorder, this.arrayOfpoints[4].y, windowWidth / 2 - 100, this.arrayOfpoints[4].y)   
-                line(xBorder, (this.arrayOfpoints[4].y + baseLine)/2, windowWidth / 2 - 100, (this.arrayOfpoints[4].y + baseLine)/2)               
-                line(xBorder, this.arrayOfpoints[4].y - ((this.arrayOfpoints[4].y + baseLine)/2 - this.arrayOfpoints[4].y), windowWidth / 2 - 100, this.arrayOfpoints[4].y - ((this.arrayOfpoints[4].y + baseLine)/2 - this.arrayOfpoints[4].y))
-                line(xBorder, this.arrayOfpoints[4].y - (baseLine - this.arrayOfpoints[4].y), windowWidth / 2 - 100, this.arrayOfpoints[4].y - (baseLine - this.arrayOfpoints[4].y))
             }
-
-        }
         this.isOverMe();
 
     };
-
 
     drawCountryGDP2() {
         this.isOverMe2();
@@ -122,6 +121,7 @@ class Country {
         }
     };
 
+
     
 
     isOverMe() {
@@ -143,6 +143,7 @@ class Country {
                 ellipse(this.arrayOfpoints[year].x + 15,baseLine - 104,7,7)
                 fill(250);
                 textSize(12);
+                noStroke();
                 text(this.arrayOfData[year].substring(0,5) + "  INDEX", this.arrayOfpoints[year].x + 30, baseLine - 100);
                 // text(this.arrayOfData2[year] + "  INDEX", this.arrayOfpoints[year].x + 10, this.arrayOfpoints[year].y + 70);
                 strokeWeight(1.5);
