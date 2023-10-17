@@ -12,6 +12,7 @@ let karte;
 
 let sliderValue = 0;
 
+
 let circleSize1;
 let distance1;
 
@@ -97,7 +98,7 @@ function setup() {
         myConsum[country].calculatePoints2(baseLine);
     }
 
-    
+
     myButton = new Button(xBorder, height - 75, 20, "Abspielen");
     //myButton = playbutton;
 }
@@ -115,7 +116,7 @@ function draw() {
         if (sliderValue < 11) { sliderValue++; console.log(sliderValue); }
         else sliderValue = 0;
     }
-    
+
     fill(255);
 
     noStroke();
@@ -129,17 +130,17 @@ function draw() {
     stroke(255)
 
 
-    if(selectedCountry != 'platzhalter'){
-    // Zeichne X- und Y-Achsen
-    line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
-    line(xBorder, baseLine, xBorder, 200); // X-Achse
+    if (selectedCountry != 'platzhalter') {
+        // Zeichne X- und Y-Achsen
+        line(xBorder, baseLine, width / 2 - 100, baseLine); // X-Achse
+        line(xBorder, baseLine, xBorder, 200); // X-Achse
     }
 
 
     let country1;
     let country2;
 
-    
+
     for (let country = 0; country < myIncome.length; country++) {
         if (myIncome[country].myCountryISO === selectedCountry) {
             myIncome[country].drawCountryGDP();
@@ -163,7 +164,7 @@ function draw() {
             country2 = myConsum[country];
         }
     }
-    
+
 
 
 
@@ -193,6 +194,15 @@ function draw() {
     textSize(18);
     textSize(12);
 
+    let colorRed = color(250, 92, 148, 180);
+    let colorRedHover = color(250, 92, 148);
+    let colorGreen = color(220, 245, 139, 180);
+    let colorGreenHover = color(220, 245, 139, 255);
+
+    colorGreenNEW = color(0, 0, 0);
+    colorRedNEW = color(0, 0, 0);
+
+
     // Draw circles for each country
     for (let i = 0; i < myIncome.length; i++) {
         let country = myIncome[i];
@@ -211,7 +221,7 @@ function draw() {
             if (sliderValue == 4) {
                 strokeWeight(2);
                 stroke(200)
-                fill(100); 
+                fill(100);
                 ellipse(x, y, circleSize2, circleSize2);
             }
             else {
@@ -219,39 +229,40 @@ function draw() {
                 if (circleSize1 < circleSize2) {
                     noStroke();
                     if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                        fill(250, 92, 148, 255); // helleres Rot beim Hovern
+                        fill(colorRedHover);
                     } else {
                         strokeWeight(2);
                         stroke(250, 92, 148)
-                        fill(250, 92, 148, 180); // rot
+                        fill(colorRed); // rot
                     }
                     ellipse(x, y, circleSize2, circleSize2);
 
                     if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                        fill(220, 245, 139, 255); // helleres Grün beim Hovern
+                        fill(colorGreenHover); // helleres Grün beim Hovern
                     } else {
                         strokeWeight(2);
                         stroke(220, 245, 139)
-                        fill(220, 245, 139, 180); // grün
+                        fill(colorGreen); // grün
                     }
                     ellipse(x, y, circleSize1, circleSize1);
                 } else {
                     noStroke();
                     if (dist(mouseX, mouseY, x, y) < circleSize1 / 2) {
-                        fill(220, 245, 139, 255); // helleres Grün beim Hovern
+                        fill(colorGreenHover); // helleres Grün beim Hovern
                     } else {
                         strokeWeight(2);
                         stroke(220, 245, 139)
-                        fill(220, 245, 139, 180); // grün
+                        fill(colorGreen); // grün
                     }
                     ellipse(x, y, circleSize1, circleSize1);
 
                     if (dist(mouseX, mouseY, x, y) < circleSize2 / 2) {
-                        fill(250, 92, 148, 255); // helleres Rot beim Hovern
+                        fill(colorRedHover); // helleres Rot beim Hovern
+
                     } else {
                         strokeWeight(2);
                         stroke(250, 92, 148)
-                        fill(250, 92, 148, 180); // rot
+                        fill(colorRed); // rot
                     }
                     ellipse(x, y, circleSize2, circleSize2);
                 }
@@ -264,14 +275,14 @@ function draw() {
 
     // Starttext nach (Re-)load
     let textHead = "Einkommen\n" +
-                    "vs. Verbraucherpreise"
+        "vs. Verbraucherpreise"
     let textSubhead = "How is the standard of living in the EU?"
     let textIntro = "Events and factors point to significant changes in the economy. One challenge arising\n"
-                    + "from this recent economic situation is a sharp increase in the cost of living.\n"
-                    + "This raises the question: How much does this economic shift truly affect our standard of living in Europe?\n"
-                    + "The answer is complex. However, a key aspect is the income development in relation to cost increases.\n"
-                    + "Are some European countries successfully countering the rising costs by adequately increasing salaries,\n" 
-                    + "thus ensuring the current standard of living?"
+        + "from this recent economic situation is a sharp increase in the cost of living.\n"
+        + "This raises the question: How much does this economic shift truly affect our standard of living in Europe?\n"
+        + "The answer is complex. However, a key aspect is the income development in relation to cost increases.\n"
+        + "Are some European countries successfully countering the rising costs by adequately increasing salaries,\n"
+        + "thus ensuring the current standard of living?"
     let textInteract = "For more information interact with the map..."
     let textNamen = "Tim Bluthardt, Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer"
 
@@ -296,41 +307,41 @@ function draw() {
     }
 
     if (selectedCountry != "platzhalter") {
-            //header
-            fill(255);
-            textSize(32);
-            text(textHead, xBorder, 100);
+        //header
+        fill(255);
+        textSize(32);
+        text(textHead, xBorder, 100);
 
         // legende
-            colorMode(RGB);
-             //einkommen linie
-            stroke(220, 245, 139);
-            strokeWeight(5);
-            line(xBorder,baseLine + 52, xBorder + 20, baseLine + 52);
-            //preise linie
-            stroke(250, 92, 148);
-            strokeWeight(5);
-            line(xBorder + 110, baseLine + 52, xBorder + 130, baseLine + 52);
+        colorMode(RGB);
+        //einkommen linie
+        stroke(220, 245, 139);
+        strokeWeight(5);
+        line(xBorder, baseLine + 52, xBorder + 20, baseLine + 52);
+        //preise linie
+        stroke(250, 92, 148);
+        strokeWeight(5);
+        line(xBorder + 110, baseLine + 52, xBorder + 130, baseLine + 52);
 
-            noStroke();
-            textSize(12);
-            text("ø income", xBorder + 30, baseLine + 55 );
-            text("ø consumer prices", xBorder + 140, baseLine + 55);
-            text("2015 = 100", xBorder + 265, baseLine + 56)
+        noStroke();
+        textSize(12);
+        text("ø income", xBorder + 30, baseLine + 55);
+        text("ø consumer prices", xBorder + 140, baseLine + 55);
+        text("2015 = 100", xBorder + 265, baseLine + 56)
 
-            //playbutton
-            // imageMode(CENTER);
-            // let xButton = height - 100;
-            // image(playbutton,xBorder, xButton, 42, 42);
-            // text("play", xBorder + 20, xButton);
+        //playbutton
+        // imageMode(CENTER);
+        // let xButton = height - 100;
+        // image(playbutton,xBorder, xButton, 42, 42);
+        // text("play", xBorder + 20, xButton);
 
-            //alter playbutton
-            if(selectedCountry != 'platzhalter'){
-                myButton.display();
-                }
+        //alter playbutton
+        if (selectedCountry != 'platzhalter') {
+            myButton.display();
+        }
 
-            //pausebutton
-            // image(pausebutton,xBorder, xButton, 42, 42);
+        //pausebutton
+        // image(pausebutton,xBorder, xButton, 42, 42);
     }
 
 
@@ -370,9 +381,9 @@ function mouseReleased() {
 
             let distance1 = dist(mouseX, mouseY, x, y);
             let distance2 = dist(mouseX, mouseY, x, y);
-            
-            
-            if (distance2 < (circleSize2/2)|| distance1 < (circleSize1/2)) {
+
+
+            if (distance2 < (circleSize2 / 2) || distance1 < (circleSize1 / 2)) {
                 selectedCountry = country.myCountryISO;
                 console.log("Selected Country ISO: " + selectedCountry);
 
