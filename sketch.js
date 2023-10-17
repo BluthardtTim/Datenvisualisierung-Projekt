@@ -276,14 +276,13 @@ function draw() {
     // text(frameRate().toFixed(2), 20, height - 30);
 
     // Starttext nach (Re-)load
-    let textHead = "Tackling Inflation:" 
-    let textSubhead = "The Battle Between Earnings and Consumer Expenses" 
+    let textHead = "Rising Costs,\n" + "Changing Standards" 
+    let textSubhead = "The Battle Between Earnings\n" + "and Consumer Expenses" 
                         // "How is the standard of living in the Europe?"
-    let textIntro = "Events and factors point to significant changes in the economy. One challenge arising\n"
-                    + "from this recent economic situation is a sharp increase in the cost of living.\n"
-                    + "This raises the question: How much does this economic shift truly affect our standard of living in Europe?\n"
-                    + "The answer is complex. However, a key aspect is the income development in relation to cost increases.\n"
-                    + "Are some European countries successfully countering the rising costs by adequately increasing salaries,\n" 
+    let textIntro = "Events and factors point to significant changes in the\n" + " economy. One challenge arising from this recent economic\n" + "situation is a sharp increase in the cost of living.\n"
+                    + "This raises the question: How much does this economic \n" + "shift truly affect our standard of living in Europe?\n"
+                    + "The answer is complex. However, a key aspect is the \n" + "income development in relation to cost increases.\n"
+                    + "Are some European countries successfully countering\n" + " the rising costs by adequately increasing salaries,\n" 
                     + "thus ensuring the current standard of living?"
     let textInteract = "For more information interact with the map..."
     let textNamen = "Tim Bluthardt, Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer"
@@ -296,15 +295,18 @@ function draw() {
         text(textHead, xBorder, 100);
         //Subheader
         textSize(24);
-        text(textSubhead, xBorder, 200);
+        text(textSubhead, xBorder, height / 2 - 200);
         //intro
-        textSize(12);
-        text(textIntro, xBorder, 300)
+        textSize(14);
+        text(textIntro, xBorder, height / 2 - 50)
         //zur Interaktion auffordern
-        textSize(18);
-        text(textInteract, xBorder, 500)
+        textSize(24);
+        // fill(220, 245, 139, 255)
+        fill(250, 92, 148, 255)
+        text(textInteract, xBorder, height / 2 + 200)
         //footer
-        textSize(12);
+        textSize(14);
+        fill(255);
         text(textNamen, xBorder, height - 50);
     }
 
