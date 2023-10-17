@@ -305,7 +305,7 @@ function draw() {
         text(textHead, xBorder, 100);
         //Subheader
         textSize(24);
-        text(textSubhead, xBorder, height / 2 - 200);
+        text(textSubhead, xBorder, 250);
         //intro
         textSize(14);
         text(textIntro, xBorder, height / 2 - 50)
