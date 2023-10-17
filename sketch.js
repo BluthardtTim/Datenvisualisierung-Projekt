@@ -22,7 +22,7 @@ let currentYear;
 let myButton;
 
 
-let backgroundColor = 50;
+let backgroundColor = 30;
 
 // Erstellen Sie ein leeres Array, um die Jahre und Werte zu speichern
 let dataArray = [];
@@ -108,7 +108,7 @@ function draw() {
     background(backgroundColor);
     // sliderValue = slider.value();
 
-    // frameRate(20);
+    frameRate(20);
     if (myButton.selected && frameCount % 10 === 0) {
         if (sliderValue < 11) { sliderValue++; console.log(sliderValue); }
         else sliderValue = 0;
@@ -368,7 +368,7 @@ function mouseReleased() {
             let distance1 = dist(mouseX, mouseY, x, y);
             let distance2 = dist(mouseX, mouseY, x, y);
 
-            console.log(countryData.obj.Name)
+            // console.log(countryData.obj.Name)
             text(countryData.obj.Name, 200, 200); 
 
             if (distance2 < circleSize2) {
