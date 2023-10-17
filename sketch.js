@@ -33,6 +33,7 @@ function preload() {
     consumData = loadTable('data2/konsumpreisindex_eu4-exp.csv', 'csv', 'header');
     karte = loadImage('europa_map_03.svg');
     coordinates = loadTable('data2/Koordinaten.csv', 'csv', 'header')
+    playbutton = loadImage('playbutton.svg');
 }
 
 function setup() {
@@ -111,10 +112,6 @@ function draw() {
     if (myButton.selected && frameCount % 10 === 0) {
         if (sliderValue < 11) { sliderValue++; console.log(sliderValue); }
         else sliderValue = 0;
-    }
-
-    if(selectedCountry != 'platzhalter'){
-    myButton.display();
     }
     
     fill(255);
@@ -268,10 +265,12 @@ function draw() {
     let textHead = "Einkommen\n" +
                     "vs. Verbraucherpreise"
     let textSubhead = "How is the standard of living in the EU?"
-    let textIntro = "Events and factors point to significant changes in the economy.\n"
-                    + "One challenge arising from this recent economic situation is a sharp increase in the cost of living. This raises the question: How much does this economic shift truly affect our standard of living in Europe?\n"
+    let textIntro = "Events and factors point to significant changes in the economy. One challenge arising\n"
+                    + "from this recent economic situation is a sharp increase in the cost of living.\n"
+                    + "This raises the question: How much does this economic shift truly affect our standard of living in Europe?\n"
                     + "The answer is complex. However, a key aspect is the income development in relation to cost increases.\n"
-                    + "Are some European countries successfully countering the rising costs by adequately increasing salaries, thus ensuring the current standard of living?"
+                    + "Are some European countries successfully countering the rising costs by adequately increasing salaries,\n" 
+                    + "thus ensuring the current standard of living?"
     let textInteract = "For more information interact with the map..."
     let textNamen = "Tim Bluthardt, Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer"
 
@@ -280,28 +279,28 @@ function draw() {
         fill(255);
         //header
         textSize(50);
-        text(textHead, 50, 100);
+        text(textHead, xBorder, 100);
         //Subheader
         textSize(18);
-        text(textSubhead, 50, 250);
+        text(textSubhead, xBorder, 250);
         //intro
         textSize(12);
-        text(textIntro, 50, 300)
+        text(textIntro, xBorder, 300)
         //zur Interaktion auffordern
         textSize(18);
-        text(textInteract, 50, 500)
+        text(textInteract, xBorder, 500)
         //footer
         textSize(12);
-        text(textNamen, 50, height - 50);
+        text(textNamen, xBorder, height - 50);
     }
 
     if (selectedCountry != "platzhalter") {
-                //header
-                fill(255);
-                textSize(32);
-                text(textHead, xBorder, 100);
+            //header
+            fill(255);
+            textSize(32);
+            text(textHead, xBorder, 100);
 
-            // legende
+        // legende
             colorMode(RGB);
              //einkommen linie
             stroke(220, 245, 139);
@@ -318,8 +317,15 @@ function draw() {
             text("ø consumer prices", xBorder + 140, baseLine + 55);
             text("2015 = 100", xBorder + 265, baseLine + 56)
 
+            //playbutton
+            // imageMode(CENTER);
+            // image(playbutton,xBorder, height - 70, 32, 32);
+            // text("play", xBorder + 80, height - 70);
 
-
+            //alter playbutton
+            // if(selectedCountry != 'platzhalter'){
+            //     myButton.display();
+            //     }
 
     }
 
