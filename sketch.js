@@ -1,3 +1,13 @@
+/*
+Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer, Tim Bluthardt
+Quellen:
+https://data.oecd.org/earnwage/average-wages.htm
+https://ec.europa.eu/eurostat/databrowser/view/TEC00027/default/table?lang=en
+https://stats.oecd.org/Index.aspx?DataSetCode=AV_AN_WAGE
+https://data-explorer.oecd.org/vis?pg=0&bp=true&snb=10&tm=wage&hc[Measure]=Wages&vw=tb&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS@AV_AN_WAGE&df[ag]=OECD.ELS.SAE&df[vs]=1.0&pd=2000,&dq=TUR....Q..&ly[rw]=UNIT_MEASURE&ly[cl]=TIME_PERIOD&to[TIME_PERIOD]=false
+ */
+
+
 let incomeData;
 let myIncome = [];
 let baseLine = 0;
