@@ -296,6 +296,11 @@ function draw() {
                     + "thus ensuring the current standard of living?"
     let textInteract = "For more information interact with the map..."
     let textNamen = "Tim Bluthardt, Aaron Illing, Devon Hoeltzli, Moritz Nussbaumer"
+    let textNamen2 = "Sources\n" +
+    "https://data.oecd.org/earnwage/average-wages.htm\n" +
+    "https://ec.europa.eu/eurostat/databrowser/view/TEC00027/default/table?lang=en\n" +
+    "https://stats.oecd.org/Index.aspx?DataSetCode=AV_AN_WAGE\n" +
+    "https://data-explorer.oecd.org"
 
 
     if (selectedCountry === "platzhalter") {
@@ -317,7 +322,11 @@ function draw() {
         //footer
         textSize(14);
         fill(255);
-        text(textNamen, xBorder, height - 50);
+        text(textNamen, xBorder, height - 100);
+        textSize(8);
+        fill(100);
+        text(textNamen2, xBorder, height - 70);
+
     }
 
     if (selectedCountry != "platzhalter") {
